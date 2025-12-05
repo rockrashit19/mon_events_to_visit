@@ -1,1140 +1,1436 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Календарь мероприятий 2025-2026 | Ивент-агентство</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #e0e0e0;
-            min-height: 100vh;
-            padding: 20px;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        color: #e0e0e0;
+        min-height: 100vh;
+        padding: 20px;
+      }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+      .container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
 
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
-        }
+      header {
+        text-align: center;
+        padding: 40px 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+      }
 
+      header h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      header p {
+        font-size: 1.2em;
+        opacity: 0.9;
+      }
+
+      /* ФИЛЬТРЫ */
+      .filters-container {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        padding: 25px;
+        margin-bottom: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .filters-title {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .filters-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+      }
+
+      .filter-group {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 12px;
+      }
+
+      .filter-group label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #a0a0ff;
+      }
+
+      .filter-group select {
+        width: 100%;
+        padding: 12px 15px;
+        border-radius: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        background: rgba(30, 30, 50, 0.9);
+        color: #fff;
+        font-size: 1em;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .filter-group select:hover,
+      .filter-group select:focus {
+        border-color: #667eea;
+        outline: none;
+      }
+
+      .filter-group select option {
+        background: #1a1a2e;
+        color: #fff;
+        padding: 10px;
+      }
+
+      .filter-buttons {
+        display: flex;
+        gap: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .filter-btn {
+        padding: 12px 25px;
+        border-radius: 25px;
+        border: none;
+        cursor: pointer;
+        font-size: 1em;
+        transition: all 0.3s ease;
+        font-weight: bold;
+      }
+
+      .filter-btn.apply {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .filter-btn.reset {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .filter-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+      }
+
+      .results-count {
+        text-align: center;
+        padding: 15px;
+        background: rgba(102, 126, 234, 0.2);
+        border-radius: 10px;
+        margin-top: 20px;
+        font-size: 1.1em;
+      }
+
+      .results-count span {
+        color: #ffd700;
+        font-weight: bold;
+        font-size: 1.3em;
+      }
+
+      /* ЛЕГЕНДА */
+      .legend {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 20px 0 30px;
+        flex-wrap: wrap;
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 0.95em;
+      }
+
+      .priority-star {
+        font-size: 1.2em;
+      }
+
+      /* СЕКЦИИ */
+      .section-title {
+        font-size: 2em;
+        padding: 20px 30px;
+        margin: 30px 0 20px;
+        border-radius: 15px;
+        text-align: center;
+      }
+
+      .russia-title {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+      }
+
+      .international-title {
+        background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+      }
+
+      .month-block {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        margin-bottom: 25px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .month-header {
+        padding: 15px 25px;
+        font-size: 1.4em;
+        font-weight: bold;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .month-header.russia {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 107, 107, 0.3),
+          rgba(238, 90, 36, 0.3)
+        );
+      }
+
+      .month-header.international {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 184, 148, 0.3),
+          rgba(0, 206, 201, 0.3)
+        );
+      }
+
+      .event-count {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 5px 15px;
+        border-radius: 15px;
+        font-size: 0.7em;
+      }
+
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 15px;
+        padding: 20px;
+      }
+
+      .event-card {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 15px;
+        padding: 20px;
+        transition: all 0.3s ease;
+        border-left: 4px solid #667eea;
+        position: relative;
+      }
+
+      .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        background: rgba(255, 255, 255, 0.12);
+      }
+
+      .event-card.priority-high {
+        border-left-color: #ff6b6b;
+        background: rgba(255, 107, 107, 0.1);
+      }
+
+      .event-card.priority-high::before {
+        content: "⭐⭐⭐ ОБЯЗАТЕЛЬНО";
+        position: absolute;
+        top: -10px;
+        right: 15px;
+        background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+        padding: 5px 12px;
+        border-radius: 10px;
+        font-size: 0.7em;
+        font-weight: bold;
+      }
+
+      .event-card.priority-medium {
+        border-left-color: #ffd93d;
+      }
+
+      .event-card.priority-medium::before {
+        content: "⭐⭐ Рекомендуется";
+        position: absolute;
+        top: -10px;
+        right: 15px;
+        background: linear-gradient(135deg, #ffd93d, #ff9f1a);
+        color: #1a1a2e;
+        padding: 5px 12px;
+        border-radius: 10px;
+        font-size: 0.7em;
+        font-weight: bold;
+      }
+
+      .event-card.hidden {
+        display: none !important;
+      }
+
+      .event-name {
+        font-size: 1.2em;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #fff;
+      }
+
+      .event-date {
+        display: inline-block;
+        background: rgba(102, 126, 234, 0.3);
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        margin-bottom: 10px;
+      }
+
+      .event-location {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+        color: #a0a0a0;
+      }
+
+      .event-location::before {
+        content: "📍";
+      }
+
+      .event-description {
+        font-size: 0.9em;
+        line-height: 1.5;
+        color: #c0c0c0;
+        margin-bottom: 10px;
+      }
+
+      .event-team {
+        display: inline-block;
+        background: rgba(0, 184, 148, 0.2);
+        padding: 5px 12px;
+        border-radius: 15px;
+        font-size: 0.8em;
+        color: #00b894;
+      }
+
+      .city-section {
+        margin-bottom: 20px;
+        padding: 0 20px 20px;
+      }
+
+      .city-header {
+        font-size: 1.3em;
+        padding: 12px 25px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .moscow-header {
+        border-left: 4px solid #ff6b6b;
+      }
+      .spb-header {
+        border-left: 4px solid #667eea;
+      }
+      .other-header {
+        border-left: 4px solid #00b894;
+      }
+      .intl-header {
+        border-left: 4px solid #00cec9;
+      }
+
+      .top-events {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 215, 0, 0.1),
+          rgba(255, 165, 0, 0.1)
+        );
+        border: 2px solid rgba(255, 215, 0, 0.3);
+        border-radius: 20px;
+        padding: 25px;
+        margin-bottom: 30px;
+      }
+
+      .top-events h2 {
+        color: #ffd700;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .top-events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 15px;
+      }
+
+      .top-event-item {
+        background: rgba(255, 255, 255, 0.08);
+        padding: 15px;
+        border-radius: 12px;
+        border-left: 4px solid #ffd700;
+      }
+
+      .top-event-item strong {
+        color: #ffd700;
+      }
+
+      .no-results {
+        text-align: center;
+        padding: 50px;
+        background: rgba(255, 107, 107, 0.1);
+        border-radius: 15px;
+        margin: 30px 0;
+        display: none;
+      }
+
+      .no-results.show {
+        display: block;
+      }
+
+      .no-results h3 {
+        color: #ff6b6b;
+        margin-bottom: 10px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 30px;
+        margin-top: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+      }
+
+      @media (max-width: 768px) {
         header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+          font-size: 1.8em;
         }
-
-        header p {
-            font-size: 1.2em;
-            opacity: 0.9;
-        }
-
-        /* ФИЛЬТРЫ */
-        .filters-container {
-            background: rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .filters-title {
-            font-size: 1.3em;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .filters-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        .filter-group {
-            background: rgba(255,255,255,0.05);
-            padding: 15px;
-            border-radius: 12px;
-        }
-
-        .filter-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #a0a0ff;
-        }
-
-        .filter-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border-radius: 10px;
-            border: 2px solid rgba(255,255,255,0.2);
-            background: rgba(30, 30, 50, 0.9);
-            color: #fff;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .filter-group select:hover, .filter-group select:focus {
-            border-color: #667eea;
-            outline: none;
-        }
-
-        .filter-group select option {
-            background: #1a1a2e;
-            color: #fff;
-            padding: 10px;
-        }
-
-        .filter-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
-        .filter-btn {
-            padding: 12px 25px;
-            border-radius: 25px;
-            border: none;
-            cursor: pointer;
-            font-size: 1em;
-            transition: all 0.3s ease;
-            font-weight: bold;
-        }
-
-        .filter-btn.apply {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-
-        .filter-btn.reset {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-            border: 2px solid rgba(255,255,255,0.3);
-        }
-
-        .filter-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-        }
-
-        .results-count {
-            text-align: center;
-            padding: 15px;
-            background: rgba(102, 126, 234, 0.2);
-            border-radius: 10px;
-            margin-top: 20px;
-            font-size: 1.1em;
-        }
-
-        .results-count span {
-            color: #ffd700;
-            font-weight: bold;
-            font-size: 1.3em;
-        }
-
-        /* ЛЕГЕНДА */
-        .legend {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 20px 0 30px;
-            flex-wrap: wrap;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.95em;
-        }
-
-        .priority-star {
-            font-size: 1.2em;
-        }
-
-        /* СЕКЦИИ */
-        .section-title {
-            font-size: 2em;
-            padding: 20px 30px;
-            margin: 30px 0 20px;
-            border-radius: 15px;
-            text-align: center;
-        }
-
-        .russia-title {
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-        }
-
-        .international-title {
-            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
-        }
-
-        .month-block {
-            background: rgba(255,255,255,0.05);
-            border-radius: 20px;
-            margin-bottom: 25px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .month-header {
-            padding: 15px 25px;
-            font-size: 1.4em;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .month-header.russia {
-            background: linear-gradient(135deg, rgba(255,107,107,0.3), rgba(238,90,36,0.3));
-        }
-
-        .month-header.international {
-            background: linear-gradient(135deg, rgba(0,184,148,0.3), rgba(0,206,201,0.3));
-        }
-
-        .event-count {
-            background: rgba(255,255,255,0.2);
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-size: 0.7em;
-        }
-
         .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 15px;
-            padding: 20px;
+          grid-template-columns: 1fr;
         }
-
-        .event-card {
-            background: rgba(255,255,255,0.08);
-            border-radius: 15px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            border-left: 4px solid #667eea;
-            position: relative;
+        .legend {
+          flex-direction: column;
+          align-items: center;
         }
-
-        .event-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            background: rgba(255,255,255,0.12);
+        .filters-grid {
+          grid-template-columns: 1fr;
         }
-
-        .event-card.priority-high {
-            border-left-color: #ff6b6b;
-            background: rgba(255,107,107,0.1);
-        }
-
-        .event-card.priority-high::before {
-            content: "⭐⭐⭐ ОБЯЗАТЕЛЬНО";
-            position: absolute;
-            top: -10px;
-            right: 15px;
-            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
-            padding: 5px 12px;
-            border-radius: 10px;
-            font-size: 0.7em;
-            font-weight: bold;
-        }
-
-        .event-card.priority-medium {
-            border-left-color: #ffd93d;
-        }
-
-        .event-card.priority-medium::before {
-            content: "⭐⭐ Рекомендуется";
-            position: absolute;
-            top: -10px;
-            right: 15px;
-            background: linear-gradient(135deg, #ffd93d, #ff9f1a);
-            color: #1a1a2e;
-            padding: 5px 12px;
-            border-radius: 10px;
-            font-size: 0.7em;
-            font-weight: bold;
-        }
-
-        .event-card.hidden {
-            display: none !important;
-        }
-
-        .event-name {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .event-date {
-            display: inline-block;
-            background: rgba(102, 126, 234, 0.3);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            margin-bottom: 10px;
-        }
-
-        .event-location {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
-            color: #a0a0a0;
-        }
-
-        .event-location::before {
-            content: "📍";
-        }
-
-        .event-description {
-            font-size: 0.9em;
-            line-height: 1.5;
-            color: #c0c0c0;
-            margin-bottom: 10px;
-        }
-
-        .event-team {
-            display: inline-block;
-            background: rgba(0,184,148,0.2);
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8em;
-            color: #00b894;
-        }
-
-        .city-section {
-            margin-bottom: 20px;
-            padding: 0 20px 20px;
-        }
-
-        .city-header {
-            font-size: 1.3em;
-            padding: 12px 25px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .moscow-header { border-left: 4px solid #ff6b6b; }
-        .spb-header { border-left: 4px solid #667eea; }
-        .other-header { border-left: 4px solid #00b894; }
-        .intl-header { border-left: 4px solid #00cec9; }
-
-        .top-events {
-            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,165,0,0.1));
-            border: 2px solid rgba(255,215,0,0.3);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 30px;
-        }
-
-        .top-events h2 {
-            color: #ffd700;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .top-events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 15px;
-        }
-
-        .top-event-item {
-            background: rgba(255,255,255,0.08);
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid #ffd700;
-        }
-
-        .top-event-item strong {
-            color: #ffd700;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 50px;
-            background: rgba(255,107,107,0.1);
-            border-radius: 15px;
-            margin: 30px 0;
-            display: none;
-        }
-
-        .no-results.show {
-            display: block;
-        }
-
-        .no-results h3 {
-            color: #ff6b6b;
-            margin-bottom: 10px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            margin-top: 40px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 15px;
-        }
-
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8em;
-            }
-            .events-grid {
-                grid-template-columns: 1fr;
-            }
-            .legend {
-                flex-direction: column;
-                align-items: center;
-            }
-            .filters-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <header>
-            <h1>🎯 Календарь мероприятий 2025-2026</h1>
-            <p>Для креативного ивент-агентства | Интеграции • Концепции • Мероприятия</p>
-        </header>
+      <header>
+        <h1>🎯 Календарь мероприятий 2025-2026</h1>
+        <p>
+          Для креативного ивент-агентства | Интеграции • Концепции • Мероприятия
+        </p>
+      </header>
 
-        <!-- ФИЛЬТРЫ -->
-        <div class="filters-container">
-            <div class="filters-title">🔍 Фильтры</div>
-            <div class="filters-grid">
-                <div class="filter-group">
-                    <label>📅 Месяц</label>
-                    <select id="filter-month">
-                        <option value="all">Все месяцы</option>
-                        <option value="dec-2025">Декабрь 2025</option>
-                        <option value="jan-2026">Январь 2026</option>
-                        <option value="feb-2026">Февраль 2026</option>
-                        <option value="mar-2026">Март 2026</option>
-                        <option value="apr-2026">Апрель 2026</option>
-                        <option value="may-2026">Май 2026</option>
-                        <option value="jun-2026">Июнь 2026</option>
-                        <option value="jul-2026">Июль 2026</option>
-                        <option value="aug-sep-2026">Август-Сентябрь 2026</option>
-                        <option value="oct-2026">Октябрь 2026</option>
-                        <option value="nov-2026">Ноябрь 2026</option>
-                    </select>
-                </div>
+      <!-- ФИЛЬТРЫ -->
+      <div class="filters-container">
+        <div class="filters-title">🔍 Фильтры</div>
+        <div class="filters-grid">
+          <div class="filter-group">
+            <label>📅 Месяц</label>
+            <select id="filter-month">
+              <option value="all">Все месяцы</option>
+              <option value="dec-2025">Декабрь 2025</option>
+              <option value="jan-2026">Январь 2026</option>
+              <option value="feb-2026">Февраль 2026</option>
+              <option value="mar-2026">Март 2026</option>
+              <option value="apr-2026">Апрель 2026</option>
+              <option value="may-2026">Май 2026</option>
+              <option value="jun-2026">Июнь 2026</option>
+              <option value="jul-2026">Июль 2026</option>
+              <option value="aug-sep-2026">Август-Сентябрь 2026</option>
+              <option value="oct-2026">Октябрь 2026</option>
+              <option value="nov-2026">Ноябрь 2026</option>
+            </select>
+          </div>
 
-                <div class="filter-group">
-                    <label>📍 Место проведения</label>
-                    <select id="filter-city">
-                        <option value="all">Все места</option>
-                        <option value="moscow">🏛️ Москва</option>
-                        <option value="spb">🌉 Санкт-Петербург</option>
-                        <option value="russia-other">🇷🇺 Другие города России</option>
-                        <option value="international">🌍 Международные</option>
-                    </select>
-                </div>
+          <div class="filter-group">
+            <label>📍 Место проведения</label>
+            <select id="filter-city">
+              <option value="all">Все места</option>
+              <option value="moscow">🏛️ Москва</option>
+              <option value="spb">🌉 Санкт-Петербург</option>
+              <option value="russia-other">🇷🇺 Другие города России</option>
+              <option value="international">🌍 Международные</option>
+            </select>
+          </div>
 
-                <div class="filter-group">
-                    <label>⭐ Важность</label>
-                    <select id="filter-priority">
-                        <option value="all">Все уровни</option>
-                        <option value="high">⭐⭐⭐ Обязательно</option>
-                        <option value="medium">⭐⭐ Рекомендуется</option>
-                        <option value="low">⭐ По возможности</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="filter-buttons">
-                <button class="filter-btn apply" onclick="applyFilters()">✅ Применить фильтры</button>
-                <button class="filter-btn reset" onclick="resetFilters()">🔄 Сбросить</button>
-            </div>
-
-            <div class="results-count">
-                Показано событий: <span id="visible-count">48</span> из <span id="total-count">48</span>
-            </div>
+          <div class="filter-group">
+            <label>⭐ Важность</label>
+            <select id="filter-priority">
+              <option value="all">Все уровни</option>
+              <option value="high">⭐⭐⭐ Обязательно</option>
+              <option value="medium">⭐⭐ Рекомендуется</option>
+              <option value="low">⭐ По возможности</option>
+            </select>
+          </div>
         </div>
 
-        <div class="legend">
-            <div class="legend-item"><span class="priority-star">⭐⭐⭐</span> Обязательно к посещению</div>
-            <div class="legend-item"><span class="priority-star">⭐⭐</span> Рекомендуется</div>
-            <div class="legend-item"><span class="priority-star">⭐</span> По возможности</div>
+        <div class="filter-buttons">
+          <button class="filter-btn apply" onclick="applyFilters()">
+            ✅ Применить фильтры
+          </button>
+          <button class="filter-btn reset" onclick="resetFilters()">
+            🔄 Сбросить
+          </button>
         </div>
 
-        <!-- ТОП ГЛАВНЫХ СОБЫТИЙ -->
-        <div class="top-events" id="top-events">
-            <h2>🏆 ТОП-8 ГЛАВНЫХ СОБЫТИЙ (НЕ ПРОПУСТИТЬ!)</h2>
-            <div class="top-events-grid">
-                <div class="top-event-item">
-                    <strong>1. НАТEXPO + МИМФ</strong><br>
-                    📅 3-5 декабря 2025 | 📍 Москва, Сколково<br>
-                    <small>7000+ участников, стартовая точка 2026</small>
-                </div>
-                <div class="top-event-item">
-                    <strong>2. CSTB.PRO.MEDIA 2026</strong><br>
-                    📅 17-18 февраля | 📍 Москва, LOFT HALL<br>
-                    <small>5300+ участников, стандарты индустрии</small>
-                </div>
-                <div class="top-event-item">
-                    <strong>3. SOLD OUT Forum</strong><br>
-                    📅 Март 2026 | 📍 Москва<br>
-                    <small>Организация и продвижение событий</small>
-                </div>
-                <div class="top-event-item">
-                    <strong>4. На уровне Идеи</strong><br>
-                    📅 21-22 апреля | 📍 Новосибирск<br>
-                    <small>Возрождение легенды, 1000+ заявок</small>
-                </div>
-                <div class="top-event-item">
-                    <strong>5. VidMK26</strong><br>
-                    📅 5-6 июня | 📍 Москва<br>
-                    <small>100+ спикеров, 7 залов, AI-видео</small>
-                </div>
-                <div class="top-event-item">
-                    <strong>6. Cannes Lions 2026</strong><br>
-                    📅 Май | 📍 Канны, Франция<br>
-                    <small>50 000 участников, олимпиада креатива</small>
-                </div>
-                <div class="top-event-item">
-                    <strong>7. SXSW 2026</strong><br>
-                    📅 12-18 марта | 📍 Остин, США<br>
-                    <small>85 000+ участников, место рождения идей</small>
-                </div>
-                <div class="top-event-item">
-                    <strong>8. Web Summit Lisbon</strong><br>
-                    📅 9-12 ноября | 📍 Лиссабон<br>
-                    <small>70 000+ участников, главный tech-форум</small>
-                </div>
+        <div class="results-count">
+          Показано событий: <span id="visible-count">48</span> из
+          <span id="total-count">48</span>
+        </div>
+      </div>
+
+      <div class="legend">
+        <div class="legend-item">
+          <span class="priority-star">⭐⭐⭐</span> Обязательно к посещению
+        </div>
+        <div class="legend-item">
+          <span class="priority-star">⭐⭐</span> Рекомендуется
+        </div>
+        <div class="legend-item">
+          <span class="priority-star">⭐</span> По возможности
+        </div>
+      </div>
+
+      <!-- ТОП ГЛАВНЫХ СОБЫТИЙ -->
+      <div class="top-events" id="top-events">
+        <h2>🏆 ТОП-8 ГЛАВНЫХ СОБЫТИЙ (НЕ ПРОПУСТИТЬ!)</h2>
+        <div class="top-events-grid">
+          <div class="top-event-item">
+            <strong>2. CSTB.PRO.MEDIA 2026</strong><br />
+            📅 17-18 февраля | 📍 Москва, LOFT HALL<br />
+            <small>5300+ участников, стандарты индустрии</small>
+          </div>
+          <div class="top-event-item">
+            <strong>3. SOLD OUT Forum</strong><br />
+            📅 Март 2026 | 📍 Москва<br />
+            <small>Организация и продвижение событий</small>
+          </div>
+          <div class="top-event-item">
+            <strong>4. На уровне Идеи</strong><br />
+            📅 21-22 апреля | 📍 Новосибирск<br />
+            <small>Возрождение легенды, 1000+ заявок</small>
+          </div>
+          <div class="top-event-item">
+            <strong>5. VidMK26</strong><br />
+            📅 5-6 июня | 📍 Москва<br />
+            <small>100+ спикеров, 7 залов, AI-видео</small>
+          </div>
+          <div class="top-event-item">
+            <strong>6. Cannes Lions 2026</strong><br />
+            📅 Май | 📍 Канны, Франция<br />
+            <small>50 000 участников, олимпиада креатива</small>
+          </div>
+          <div class="top-event-item">
+            <strong>8. Web Summit Lisbon</strong><br />
+            📅 9-12 ноября | 📍 Лиссабон<br />
+            <small>70 000+ участников, главный tech-форум</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- СООБЩЕНИЕ "НЕТ РЕЗУЛЬТАТОВ" -->
+      <div class="no-results" id="no-results">
+        <h3>😕 Мероприятия не найдены</h3>
+        <p>Попробуйте изменить параметры фильтрации или сбросить фильтры</p>
+      </div>
+
+      <!-- ВСЕ МЕРОПРИЯТИЯ -->
+      <div id="all-events">
+        <!-- ДЕКАБРЬ 2025 -->
+        <div class="month-block" data-month="dec-2025">
+          <div class="month-header russia">
+            <span>📅 ДЕКАБРЬ 2025 — РОССИЯ</span>
+            <span class="event-count month-count">4 события</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-medium"
+              data-month="dec-2025"
+              data-city="moscow"
+              data-priority="medium"
+            >
+              <div class="event-name">Конференция «Итоги года»</div>
+              <div class="event-date">2 декабря</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                Подведение итогов медиаиндустрии за 2025 год.
+              </div>
+              <div class="event-team">👥 1 человек</div>
             </div>
+
+            <div
+              class="event-card"
+              data-month="dec-2025"
+              data-city="moscow"
+              data-priority="low"
+            >
+              <div class="event-name">MedTravelExpo-2025</div>
+              <div class="event-date">8-11 декабря</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                Выставка медицинского туризма и событийного менеджмента.
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- СООБЩЕНИЕ "НЕТ РЕЗУЛЬТАТОВ" -->
-        <div class="no-results" id="no-results">
-            <h3>😕 Мероприятия не найдены</h3>
-            <p>Попробуйте изменить параметры фильтрации или сбросить фильтры</p>
+        <!-- ЯНВАРЬ 2026 - РОССИЯ -->
+        <div class="month-block" data-month="jan-2026">
+          <div class="month-header russia">
+            <span>📅 ЯНВАРЬ 2026 — РОССИЯ</span>
+            <span class="event-count month-count">3 события</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-medium"
+              data-month="jan-2026"
+              data-city="moscow"
+              data-priority="medium"
+            >
+              <div class="event-name">Уникальная Россия</div>
+              <div class="event-date">23 января - 8 февраля</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                12 000 кв.м выставка народного искусства, дизайна. Масштабный
+                дизайн-проект.
+              </div>
+              <div class="event-team">👥 Дизайнеры</div>
+            </div>
+            <div
+              class="event-card"
+              data-month="jan-2026"
+              data-city="moscow"
+              data-priority="low"
+            >
+              <div class="event-name">Московские Узоры</div>
+              <div class="event-date">23-25 января</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">Конкурс-фестиваль творчества.</div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="jan-2026"
+              data-city="moscow"
+              data-priority="medium"
+            >
+              <div class="event-name">Хакатон VidMK по генеративному видео</div>
+              <div class="event-date">22 января</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                100 нейрокреаторов, 25 команд за 24 часа создают рекламное
+                AI-видео.
+              </div>
+              <div class="event-team">👥 1-2 креативщика</div>
+            </div>
+          </div>
         </div>
 
-        <!-- ВСЕ МЕРОПРИЯТИЯ -->
-        <div id="all-events">
-
-            <!-- ДЕКАБРЬ 2025 -->
-            <div class="month-block" data-month="dec-2025">
-                <div class="month-header russia">
-                    <span>📅 ДЕКАБРЬ 2025 — РОССИЯ</span>
-                    <span class="event-count month-count">4 события</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-high" data-month="dec-2025" data-city="moscow" data-priority="high">
-                        <div class="event-name">НАТEXPO + МИМФ 2025</div>
-                        <div class="event-date">3-5 декабря</div>
-                        <div class="event-location">Технопарк «Сколково», Москва</div>
-                        <div class="event-description">Главное медиа-событие года. 7000+ участников из 70+ регионов. Хакатон по генеративному ИИ, премии, конгресс НАТ.</div>
-                        <div class="event-team">👥 1-2 человека</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="dec-2025" data-city="moscow" data-priority="medium">
-                        <div class="event-name">Конференция «Итоги года»</div>
-                        <div class="event-date">2 декабря</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Подведение итогов медиаиндустрии за 2025 год.</div>
-                        <div class="event-team">👥 1 человек</div>
-                    </div>
-                    <div class="event-card" data-month="dec-2025" data-city="moscow" data-priority="low">
-                        <div class="event-name">Форум «Триалоги»</div>
-                        <div class="event-date">4 декабря</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Форум для профессионалов индустрии.</div>
-                    </div>
-                    <div class="event-card" data-month="dec-2025" data-city="moscow" data-priority="low">
-                        <div class="event-name">MedTravelExpo-2025</div>
-                        <div class="event-date">8-11 декабря</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Выставка медицинского туризма и событийного менеджмента.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ЯНВАРЬ 2026 - РОССИЯ -->
-            <div class="month-block" data-month="jan-2026">
-                <div class="month-header russia">
-                    <span>📅 ЯНВАРЬ 2026 — РОССИЯ</span>
-                    <span class="event-count month-count">3 события</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-medium" data-month="jan-2026" data-city="moscow" data-priority="medium">
-                        <div class="event-name">Уникальная Россия</div>
-                        <div class="event-date">23 января - 8 февраля</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">12 000 кв.м выставка народного искусства, дизайна. Масштабный дизайн-проект.</div>
-                        <div class="event-team">👥 Дизайнеры</div>
-                    </div>
-                    <div class="event-card" data-month="jan-2026" data-city="moscow" data-priority="low">
-                        <div class="event-name">Московские Узоры</div>
-                        <div class="event-date">23-25 января</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Конкурс-фестиваль творчества.</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="jan-2026" data-city="moscow" data-priority="medium">
-                        <div class="event-name">Хакатон VidMK по генеративному видео</div>
-                        <div class="event-date">22 января</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">100 нейрокреаторов, 25 команд за 24 часа создают рекламное AI-видео.</div>
-                        <div class="event-team">👥 1-2 креативщика</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ЯНВАРЬ 2026 - МЕЖДУНАРОДНЫЕ -->
-            <div class="month-block" data-month="jan-2026">
-                <div class="month-header international">
-                    <span>📅 ЯНВАРЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
-                    <span class="event-count month-count">2 события</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-medium" data-month="jan-2026" data-city="international" data-priority="medium">
-                        <div class="event-name">CES 2026</div>
-                        <div class="event-date">6-9 января</div>
-                        <div class="event-location">Лас-Вегас, США</div>
-                        <div class="event-description">Крупнейший технологический форум мира. 170 000+ человек. AI, IoT, VR/AR, robotics.</div>
-                        <div class="event-team">👥 1-2 tech-специалиста</div>
-                    </div>
-                    <div class="event-card" data-month="jan-2026" data-city="international" data-priority="low">
-                        <div class="event-name">NRF Retail's Big Show</div>
-                        <div class="event-date">11-13 января</div>
-                        <div class="event-location">Нью-Йорк, США</div>
-                        <div class="event-description">40 000 розничных профессионалов. AI для ритейла, AR/VR.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ФЕВРАЛЬ 2026 - РОССИЯ -->
-            <div class="month-block" data-month="feb-2026">
-                <div class="month-header russia">
-                    <span>📅 ФЕВРАЛЬ 2026 — РОССИЯ</span>
-                    <span class="event-count month-count">5 событий</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-high" data-month="feb-2026" data-city="moscow" data-priority="high">
-                        <div class="event-name">CSTB.PRO.MEDIA 2026</div>
-                        <div class="event-date">17-18 февраля</div>
-                        <div class="event-location">LOFT HALL, Москва</div>
-                        <div class="event-description">28-й форум медиаиндустрии. 5300+ специалистов. ИИ в продакшене, Virtual Production, интерактивная реклама.</div>
-                        <div class="event-team">👥 2-3 человека</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="feb-2026" data-city="moscow" data-priority="medium">
-                        <div class="event-name">PR+ Forum 2026</div>
-                        <div class="event-date">11-13 февраля</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Медиа-коммуникации, работа с блогерами, AI в PR, ROI.</div>
-                        <div class="event-team">👥 1-2 человека</div>
-                    </div>
-                    <div class="event-card" data-month="feb-2026" data-city="moscow" data-priority="low">
-                        <div class="event-name">Первозданная Россия</div>
-                        <div class="event-date">6 февраля - 5 марта</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Фотовыставка природы, 400+ снимков. Вдохновение для дизайнеров.</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="feb-2026" data-city="spb" data-priority="medium">
-                        <div class="event-name">Рекламный Хаб Северной столицы</div>
-                        <div class="event-date">17-18 февраля</div>
-                        <div class="event-location">Санкт-Петербург</div>
-                        <div class="event-description">Региональный форум рекламной индустрии.</div>
-                        <div class="event-team">👥 1 человек</div>
-                    </div>
-                    <div class="event-card" data-month="feb-2026" data-city="spb" data-priority="low">
-                        <div class="event-name">ДоброМедиа</div>
-                        <div class="event-date">19-24 февраля</div>
-                        <div class="event-location">Санкт-Петербург</div>
-                        <div class="event-description">Конкурс социальной журналистики.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ФЕВРАЛЬ 2026 - МЕЖДУНАРОДНЫЕ -->
-            <div class="month-block" data-month="feb-2026">
-                <div class="month-header international">
-                    <span>📅 ФЕВРАЛЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
-                    <span class="event-count month-count">1 событие</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card" data-month="feb-2026" data-city="international" data-priority="low">
-                        <div class="event-name">Web Summit Qatar</div>
-                        <div class="event-date">1-4 февраля</div>
-                        <div class="event-location">Доха, Катар</div>
-                        <div class="event-description">Региональный tech-форум Web Summit.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- МАРТ 2026 - РОССИЯ -->
-            <div class="month-block" data-month="mar-2026">
-                <div class="month-header russia">
-                    <span>📅 МАРТ 2026 — РОССИЯ</span>
-                    <span class="event-count month-count">6 событий</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-high" data-month="mar-2026" data-city="moscow" data-priority="high">
-                        <div class="event-name">SOLD OUT Forum</div>
-                        <div class="event-date">Март 2026</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Главный форум об организации и продвижении событий в России. 2 дня программы, нетворкинг.</div>
-                        <div class="event-team">👥 Весь team!</div>
-                    </div>
-                    <div class="event-card priority-high" data-month="mar-2026" data-city="moscow" data-priority="high">
-                        <div class="event-name">V Original+ Фестиваль контента</div>
-                        <div class="event-date">18-20 марта</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Экранизации, сериалы, Virtual Production, AI в видеопроизводстве.</div>
-                        <div class="event-team">👥 1-2 креативщика</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="mar-2026" data-city="moscow" data-priority="medium">
-                        <div class="event-name">VI Московская неделя моды</div>
-                        <div class="event-date">12-17 марта</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Fashion-индустрия, дизайн, тренды.</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="mar-2026" data-city="moscow" data-priority="medium">
-                        <div class="event-name">Global Tech Forum</div>
-                        <div class="event-date">27 марта</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">2000 участников, 120 спикеров. Цифровые тренды.</div>
-                        <div class="event-team">👥 1 человек</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="mar-2026" data-city="spb" data-priority="medium">
-                        <div class="event-name">Spring Marketing Forum</div>
-                        <div class="event-date">5 марта</div>
-                        <div class="event-location">Санкт-Петербург</div>
-                        <div class="event-description">Тренды маркетинга, внедрение нейросетей в B2B.</div>
-                        <div class="event-team">👥 1 человек</div>
-                    </div>
-                    <div class="event-card" data-month="mar-2026" data-city="spb" data-priority="low">
-                        <div class="event-name">Планета Искусств</div>
-                        <div class="event-date">15-18 марта</div>
-                        <div class="event-location">Санкт-Петербург</div>
-                        <div class="event-description">360° фестиваль искусств и творчества.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- МАРТ 2026 - МЕЖДУНАРОДНЫЕ -->
-            <div class="month-block" data-month="mar-2026">
-                <div class="month-header international">
-                    <span>📅 МАРТ 2026 — МЕЖДУНАРОДНЫЕ</span>
-                    <span class="event-count month-count">2 события</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-high" data-month="mar-2026" data-city="international" data-priority="high">
-                        <div class="event-name">SXSW 2026</div>
-                        <div class="event-date">12-18 марта</div>
-                        <div class="event-location">Остин, Техас, США</div>
-                        <div class="event-description">Легендарный 7-дневный фестиваль. 85 000+ участников. 850+ сессий, место рождения идей.</div>
-                        <div class="event-team">👥 2-3 креативщика</div>
-                    </div>
-                    <div class="event-card" data-month="mar-2026" data-city="international" data-priority="low">
-                        <div class="event-name">RISE Hong Kong</div>
-                        <div class="event-date">Март</div>
-                        <div class="event-location">Гонконг</div>
-                        <div class="event-description">Азиатский tech-форум.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- АПРЕЛЬ 2026 - РОССИЯ -->
-            <div class="month-block" data-month="apr-2026">
-                <div class="month-header russia">
-                    <span>📅 АПРЕЛЬ 2026 — РОССИЯ</span>
-                    <span class="event-count month-count">5 событий</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-high" data-month="apr-2026" data-city="russia-other" data-priority="high">
-                        <div class="event-name">На уровне Идеи</div>
-                        <div class="event-date">21-22 апреля</div>
-                        <div class="event-location">Новосибирск</div>
-                        <div class="event-description">Возрождение легендарного фестиваля! 1000+ заявок, 37 экспертов-жюри. Топ-агентства России.</div>
-                        <div class="event-team">👥 1-2 креативщика</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="apr-2026" data-city="moscow" data-priority="medium">
-                        <div class="event-name">Blockchain Forum 2026</div>
-                        <div class="event-date">14-15 апреля</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">20 000+ участников. Web3, Metaverse, NFT, blockchain в медиа.</div>
-                        <div class="event-team">👥 1 человек</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="apr-2026" data-city="moscow" data-priority="medium">
-                        <div class="event-name">Российская неделя высоких технологий</div>
-                        <div class="event-date">7-10 апреля</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Связь-2026, Навитех, ICEE. Технологические инновации.</div>
-                    </div>
-                    <div class="event-card" data-month="apr-2026" data-city="moscow" data-priority="low">
-                        <div class="event-name">ExpoCifra</div>
-                        <div class="event-date">14-16 апреля</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">IT, решения для цифровой трансформации.</div>
-                    </div>
-                    <div class="event-card" data-month="apr-2026" data-city="moscow" data-priority="low">
-                        <div class="event-name">Российский форум индустрии дизайна</div>
-                        <div class="event-date">15-16 апреля</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Дизайн-индустрия, тренды, нетворкинг.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- АПРЕЛЬ 2026 - МЕЖДУНАРОДНЫЕ -->
-            <div class="month-block" data-month="apr-2026">
-                <div class="month-header international">
-                    <span>📅 АПРЕЛЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
-                    <span class="event-count month-count">1 событие</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-high" data-month="apr-2026" data-city="international" data-priority="high">
-                        <div class="event-name">TED 2026</div>
-                        <div class="event-date">13-17 апреля</div>
-                        <div class="event-location">Ванкувер, Канада</div>
-                        <div class="event-description">⚠️ ПОСЛЕДНИЙ ГОД В ВАНКУВЕРЕ! 1000 участников, 80+ TED Talks. Стоимость ~$12 000 USD.</div>
-                        <div class="event-team">👥 Директор + 1-2 лидера</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- МАЙ 2026 - РОССИЯ -->
-            <div class="month-block" data-month="may-2026">
-                <div class="month-header russia">
-                    <span>📅 МАЙ 2026 — РОССИЯ</span>
-                    <span class="event-count month-count">1 событие</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-medium" data-month="may-2026" data-city="moscow" data-priority="medium">
-                        <div class="event-name">Business & Design Dialogue</div>
-                        <div class="event-date">28-29 мая</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Дизайн офисных пространств, AI в дизайне.</div>
-                        <div class="event-team">👥 1 человек</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- МАЙ 2026 - МЕЖДУНАРОДНЫЕ -->
-            <div class="month-block" data-month="may-2026">
-                <div class="month-header international">
-                    <span>📅 МАЙ 2026 — МЕЖДУНАРОДНЫЕ</span>
-                    <span class="event-count month-count">1 событие</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-high" data-month="may-2026" data-city="international" data-priority="high">
-                        <div class="event-name">Cannes Lions 2026</div>
-                        <div class="event-date">12-23 мая</div>
-                        <div class="event-location">Канны, Франция</div>
-                        <div class="event-description">🏆 ОЛИМПИАДА КРЕАТИВНОЙ ИНДУСТРИИ! 50 000 участников. Лучшие креативные работы мира.</div>
-                        <div class="event-team">👥 2-3 креативщика + менеджмент</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ИЮНЬ 2026 - РОССИЯ -->
-            <div class="month-block" data-month="jun-2026">
-                <div class="month-header russia">
-                    <span>📅 ИЮНЬ 2026 — РОССИЯ</span>
-                    <span class="event-count month-count">2 события</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-high" data-month="jun-2026" data-city="moscow" data-priority="high">
-                        <div class="event-name">VidMK26</div>
-                        <div class="event-date">5-6 июня</div>
-                        <div class="event-location">Soluxe Hotel, Москва</div>
-                        <div class="event-description">X ежегодный форум создателей кино и видео. 100+ спикеров, 2000+ участников, 7 залов.</div>
-                        <div class="event-team">👥 1-2 креативщика</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="jun-2026" data-city="spb" data-priority="medium">
-                        <div class="event-name">ПМЭФ 2026</div>
-                        <div class="event-date">3-6 июня</div>
-                        <div class="event-location">Санкт-Петербург</div>
-                        <div class="event-description">Петербургский международный экономический форум. 24 000 участников.</div>
-                        <div class="event-team">👥 1 человек</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ИЮНЬ 2026 - МЕЖДУНАРОДНЫЕ -->
-            <div class="month-block" data-month="jun-2026">
-                <div class="month-header international">
-                    <span>📅 ИЮНЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
-                    <span class="event-count month-count">1 событие</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card" data-month="jun-2026" data-city="international" data-priority="low">
-                        <div class="event-name">Collision Conference</div>
-                        <div class="event-date">4-6 июня</div>
-                        <div class="event-location">Торонто, Канада</div>
-                        <div class="event-description">Tech-конференция для стартапов и инноваций.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ИЮЛЬ 2026 -->
-            <div class="month-block" data-month="jul-2026">
-                <div class="month-header russia">
-                    <span>📅 ИЮЛЬ 2026 — РОССИЯ</span>
-                    <span class="event-count month-count">2 события</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card" data-month="jul-2026" data-city="moscow" data-priority="low">
-                        <div class="event-name">Epic Con Russia</div>
-                        <div class="event-date">4-5 июля</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">Фестиваль фантастики, фан-культура. Вдохновение для креативов.</div>
-                        <div class="event-team">👥 1-2 человека</div>
-                    </div>
-                    <div class="event-card" data-month="jul-2026" data-city="spb" data-priority="low">
-                        <div class="event-name">Дивный остров</div>
-                        <div class="event-date">23-26 июля</div>
-                        <div class="event-location">Санкт-Петербург</div>
-                        <div class="event-description">Творчество, танец, театр, выставки.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- АВГУСТ-СЕНТЯБРЬ 2026 - РОССИЯ -->
-            <div class="month-block" data-month="aug-sep-2026">
-                <div class="month-header russia">
-                    <span>📅 АВГУСТ-СЕНТЯБРЬ 2026 — РОССИЯ</span>
-                    <span class="event-count month-count">4 события</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-medium" data-month="aug-sep-2026" data-city="moscow" data-priority="medium">
-                        <div class="event-name">Московская книжная ярмарка</div>
-                        <div class="event-date">3-7 сентября</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">300+ издателей, встречи с авторами. Контент для экранизаций.</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="aug-sep-2026" data-city="moscow" data-priority="medium">
-                        <div class="event-name">МТК-2026</div>
-                        <div class="event-date">8-10 сентября</div>
-                        <div class="event-location">Москва</div>
-                        <div class="event-description">800+ спикеров, 20+ треков. Медиа и технологии.</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="aug-sep-2026" data-city="spb" data-priority="medium">
-                        <div class="event-name">Российские дни дизайна и архитектуры</div>
-                        <div class="event-date">23-25 сентября</div>
-                        <div class="event-location">Санкт-Петербург</div>
-                        <div class="event-description">Дизайн, архитектура, пространства.</div>
-                        <div class="event-team">👥 1 дизайнер</div>
-                    </div>
-                    <div class="event-card" data-month="aug-sep-2026" data-city="russia-other" data-priority="low">
-                        <div class="event-name">Kazan Digital Week</div>
-                        <div class="event-date">Сентябрь</div>
-                        <div class="event-location">Казань</div>
-                        <div class="event-description">Цифровые технологии, инновации.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- АВГУСТ-СЕНТЯБРЬ 2026 - МЕЖДУНАРОДНЫЕ -->
-            <div class="month-block" data-month="aug-sep-2026">
-                <div class="month-header international">
-                    <span>📅 АВГУСТ-СЕНТЯБРЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
-                    <span class="event-count month-count">2 события</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-medium" data-month="aug-sep-2026" data-city="international" data-priority="medium">
-                        <div class="event-name">Burning Man 2026</div>
-                        <div class="event-date">30 августа - 7 сентября</div>
-                        <div class="event-location">Невада, США</div>
-                        <div class="event-description">70 000 людей в пустыне. 2000 арт-инсталляций. Экстремальное вдохновение.</div>
-                        <div class="event-team">👥 5-6 креативщиков (8 дней)</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="aug-sep-2026" data-city="international" data-priority="medium">
-                        <div class="event-name">DMEXCO 2026</div>
-                        <div class="event-date">23-24 сентября</div>
-                        <div class="event-location">Кельн, Германия</div>
-                        <div class="event-description">40 000 маркетинг-лидеров. Главная конференция по цифровому маркетингу в Европе.</div>
-                        <div class="event-team">👥 1-2 маркетолога</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ОКТЯБРЬ 2026 - МЕЖДУНАРОДНЫЕ -->
-            <div class="month-block" data-month="oct-2026">
-                <div class="month-header international">
-                    <span>📅 ОКТЯБРЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
-                    <span class="event-count month-count">2 события</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-medium" data-month="oct-2026" data-city="international" data-priority="medium">
-                        <div class="event-name">Adobe MAX 2026</div>
-                        <div class="event-date">26-28 октября</div>
-                        <div class="event-location">Лос-Анджелес, США</div>
-                        <div class="event-description">200+ мастер-классов. Generative AI, 3D, Video Production.</div>
-                        <div class="event-team">👥 2-3 дизайнера</div>
-                    </div>
-                    <div class="event-card priority-medium" data-month="oct-2026" data-city="international" data-priority="medium">
-                        <div class="event-name">MIPCOM 2026</div>
-                        <div class="event-date">12-15 октября</div>
-                        <div class="event-location">Канны, Франция</div>
-                        <div class="event-description">Международный маркетплейс контента. Режиссеры, продюсеры, платформы.</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- НОЯБРЬ 2026 - МЕЖДУНАРОДНЫЕ -->
-            <div class="month-block" data-month="nov-2026">
-                <div class="month-header international">
-                    <span>📅 НОЯБРЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
-                    <span class="event-count month-count">1 событие</span>
-                </div>
-                <div class="events-grid">
-                    <div class="event-card priority-high" data-month="nov-2026" data-city="international" data-priority="high">
-                        <div class="event-name">Web Summit Lisbon 2026</div>
-                        <div class="event-date">9-12 ноября</div>
-                        <div class="event-location">Лиссабон, Португалия</div>
-                        <div class="event-description">🚀 ГЛАВНЫЙ ГЛОБАЛЬНЫЙ TECH-ФОРУМ! 70 000+ участников, 1200+ спикеров, 160+ стран.</div>
-                        <div class="event-team">👥 Директор + 2-3 лидера</div>
-                    </div>
-                </div>
-            </div>
-
+        <!-- ЯНВАРЬ 2026 - МЕЖДУНАРОДНЫЕ -->
+        <div class="month-block" data-month="jan-2026">
+          <div class="month-header international">
+            <span>📅 ЯНВАРЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
+            <span class="event-count month-count">2 события</span>
+          </div>
         </div>
 
-        <footer>
-            <p>📧 Документ подготовлен для планирования развития команды на 2025-2026</p>
-            <p style="margin-top: 10px; opacity: 0.7;">Рекомендуемый бюджет: $20-40k USD на команду | Приоритет: НАТEXPO → CSTB → SOLD OUT → Cannes Lions</p>
-        </footer>
+        <!-- ФЕВРАЛЬ 2026 - РОССИЯ -->
+        <div class="month-block" data-month="feb-2026">
+          <div class="month-header russia">
+            <span>📅 ФЕВРАЛЬ 2026 — РОССИЯ</span>
+            <span class="event-count month-count">5 событий</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-high"
+              data-month="feb-2026"
+              data-city="moscow"
+              data-priority="high"
+            >
+              <div class="event-name">CSTB.PRO.MEDIA 2026</div>
+              <div class="event-date">17-18 февраля</div>
+              <div class="event-location">LOFT HALL, Москва</div>
+              <div class="event-description">
+                28-й форум медиаиндустрии. 5300+ специалистов. ИИ в продакшене,
+                Virtual Production, интерактивная реклама.
+              </div>
+              <div class="event-team">👥 2-3 человека</div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="feb-2026"
+              data-city="moscow"
+              data-priority="medium"
+            >
+              <div class="event-name">PR+ Forum 2026</div>
+              <div class="event-date">11-13 февраля</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                Медиа-коммуникации, работа с блогерами, AI в PR, ROI.
+              </div>
+              <div class="event-team">👥 1-2 человека</div>
+            </div>
+            <div
+              class="event-card"
+              data-month="feb-2026"
+              data-city="moscow"
+              data-priority="low"
+            >
+              <div class="event-name">Первозданная Россия</div>
+              <div class="event-date">6 февраля - 5 марта</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                Фотовыставка природы, 400+ снимков. Вдохновение для дизайнеров.
+              </div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="feb-2026"
+              data-city="spb"
+              data-priority="medium"
+            >
+              <div class="event-name">Рекламный Хаб Северной столицы</div>
+              <div class="event-date">17-18 февраля</div>
+              <div class="event-location">Санкт-Петербург</div>
+              <div class="event-description">
+                Региональный форум рекламной индустрии.
+              </div>
+              <div class="event-team">👥 1 человек</div>
+            </div>
+            <div
+              class="event-card"
+              data-month="feb-2026"
+              data-city="spb"
+              data-priority="low"
+            >
+              <div class="event-name">ДоброМедиа</div>
+              <div class="event-date">19-24 февраля</div>
+              <div class="event-location">Санкт-Петербург</div>
+              <div class="event-description">
+                Конкурс социальной журналистики.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ФЕВРАЛЬ 2026 - МЕЖДУНАРОДНЫЕ -->
+        <div class="month-block" data-month="feb-2026">
+          <div class="month-header international">
+            <span>📅 ФЕВРАЛЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
+            <span class="event-count month-count">1 событие</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card"
+              data-month="feb-2026"
+              data-city="international"
+              data-priority="low"
+            >
+              <div class="event-name">Web Summit Qatar</div>
+              <div class="event-date">1-4 февраля</div>
+              <div class="event-location">Доха, Катар</div>
+              <div class="event-description">
+                Региональный tech-форум Web Summit.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- МАРТ 2026 - РОССИЯ -->
+        <div class="month-block" data-month="mar-2026">
+          <div class="month-header russia">
+            <span>📅 МАРТ 2026 — РОССИЯ</span>
+            <span class="event-count month-count">6 событий</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-high"
+              data-month="mar-2026"
+              data-city="moscow"
+              data-priority="high"
+            >
+              <div class="event-name">SOLD OUT Forum</div>
+              <div class="event-date">Март 2026</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                Главный форум об организации и продвижении событий в России. 2
+                дня программы, нетворкинг.
+              </div>
+              <div class="event-team">👥 Весь team!</div>
+            </div>
+            <div
+              class="event-card priority-high"
+              data-month="mar-2026"
+              data-city="moscow"
+              data-priority="high"
+            >
+              <div class="event-name">V Original+ Фестиваль контента</div>
+              <div class="event-date">18-20 марта</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                Экранизации, сериалы, Virtual Production, AI в
+                видеопроизводстве.
+              </div>
+              <div class="event-team">👥 1-2 креативщика</div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="mar-2026"
+              data-city="moscow"
+              data-priority="medium"
+            >
+              <div class="event-name">VI Московская неделя моды</div>
+              <div class="event-date">12-17 марта</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                Fashion-индустрия, дизайн, тренды.
+              </div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="mar-2026"
+              data-city="moscow"
+              data-priority="medium"
+            >
+              <div class="event-name">Global Tech Forum</div>
+              <div class="event-date">27 марта</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                2000 участников, 120 спикеров. Цифровые тренды.
+              </div>
+              <div class="event-team">👥 1 человек</div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="mar-2026"
+              data-city="spb"
+              data-priority="medium"
+            >
+              <div class="event-name">Spring Marketing Forum</div>
+              <div class="event-date">5 марта</div>
+              <div class="event-location">Санкт-Петербург</div>
+              <div class="event-description">
+                Тренды маркетинга, внедрение нейросетей в B2B.
+              </div>
+              <div class="event-team">👥 1 человек</div>
+            </div>
+            <div
+              class="event-card"
+              data-month="mar-2026"
+              data-city="spb"
+              data-priority="low"
+            >
+              <div class="event-name">Планета Искусств</div>
+              <div class="event-date">15-18 марта</div>
+              <div class="event-location">Санкт-Петербург</div>
+              <div class="event-description">
+                360° фестиваль искусств и творчества.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- МАРТ 2026 - МЕЖДУНАРОДНЫЕ -->
+        <div class="month-block" data-month="mar-2026">
+          <div class="month-header international">
+            <span>📅 МАРТ 2026 — МЕЖДУНАРОДНЫЕ</span>
+            <span class="event-count month-count">2 события</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card"
+              data-month="mar-2026"
+              data-city="international"
+              data-priority="low"
+            >
+              <div class="event-name">RISE Hong Kong</div>
+              <div class="event-date">Март</div>
+              <div class="event-location">Гонконг</div>
+              <div class="event-description">Азиатский tech-форум.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- АПРЕЛЬ 2026 - РОССИЯ -->
+        <div class="month-block" data-month="apr-2026">
+          <div class="month-header russia">
+            <span>📅 АПРЕЛЬ 2026 — РОССИЯ</span>
+            <span class="event-count month-count">5 событий</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-high"
+              data-month="apr-2026"
+              data-city="russia-other"
+              data-priority="high"
+            >
+              <div class="event-name">На уровне Идеи</div>
+              <div class="event-date">21-22 апреля</div>
+              <div class="event-location">Новосибирск</div>
+              <div class="event-description">
+                Возрождение легендарного фестиваля! 1000+ заявок, 37
+                экспертов-жюри. Топ-агентства России.
+              </div>
+              <div class="event-team">👥 1-2 креативщика</div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="apr-2026"
+              data-city="moscow"
+              data-priority="medium"
+            >
+              <div class="event-name">Blockchain Forum 2026</div>
+              <div class="event-date">14-15 апреля</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                20 000+ участников. Web3, Metaverse, NFT, blockchain в медиа.
+              </div>
+              <div class="event-team">👥 1 человек</div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="apr-2026"
+              data-city="moscow"
+              data-priority="medium"
+            >
+              <div class="event-name">Российская неделя высоких технологий</div>
+              <div class="event-date">7-10 апреля</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                Связь-2026, Навитех, ICEE. Технологические инновации.
+              </div>
+            </div>
+            <div
+              class="event-card"
+              data-month="apr-2026"
+              data-city="moscow"
+              data-priority="low"
+            >
+              <div class="event-name">ExpoCifra</div>
+              <div class="event-date">14-16 апреля</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                IT, решения для цифровой трансформации.
+              </div>
+            </div>
+            <div
+              class="event-card"
+              data-month="apr-2026"
+              data-city="moscow"
+              data-priority="low"
+            >
+              <div class="event-name">Российский форум индустрии дизайна</div>
+              <div class="event-date">15-16 апреля</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                Дизайн-индустрия, тренды, нетворкинг.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- АПРЕЛЬ 2026 - МЕЖДУНАРОДНЫЕ -->
+        <div class="month-block" data-month="apr-2026">
+          <div class="month-header international">
+            <span>📅 АПРЕЛЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
+            <span class="event-count month-count">1 событие</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-high"
+              data-month="apr-2026"
+              data-city="international"
+              data-priority="high"
+            >
+              <div class="event-name">TED 2026</div>
+              <div class="event-date">13-17 апреля</div>
+              <div class="event-location">Ванкувер, Канада</div>
+              <div class="event-description">
+                ⚠️ ПОСЛЕДНИЙ ГОД В ВАНКУВЕРЕ! 1000 участников, 80+ TED Talks.
+                Стоимость ~$12 000 USD.
+              </div>
+              <div class="event-team">👥 Директор + 1-2 лидера</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- МАЙ 2026 - РОССИЯ -->
+        <div class="month-block" data-month="may-2026">
+          <div class="month-header russia">
+            <span>📅 МАЙ 2026 — РОССИЯ</span>
+            <span class="event-count month-count">1 событие</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-medium"
+              data-month="may-2026"
+              data-city="moscow"
+              data-priority="medium"
+            >
+              <div class="event-name">Business & Design Dialogue</div>
+              <div class="event-date">28-29 мая</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                Дизайн офисных пространств, AI в дизайне.
+              </div>
+              <div class="event-team">👥 1 человек</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- МАЙ 2026 - МЕЖДУНАРОДНЫЕ -->
+        <div class="month-block" data-month="may-2026">
+          <div class="month-header international">
+            <span>📅 МАЙ 2026 — МЕЖДУНАРОДНЫЕ</span>
+            <span class="event-count month-count">1 событие</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-high"
+              data-month="may-2026"
+              data-city="international"
+              data-priority="high"
+            >
+              <div class="event-name">Cannes Lions 2026</div>
+              <div class="event-date">12-23 мая</div>
+              <div class="event-location">Канны, Франция</div>
+              <div class="event-description">
+                🏆 ОЛИМПИАДА КРЕАТИВНОЙ ИНДУСТРИИ! 50 000 участников. Лучшие
+                креативные работы мира.
+              </div>
+              <div class="event-team">👥 2-3 креативщика + менеджмент</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ИЮНЬ 2026 - РОССИЯ -->
+        <div class="month-block" data-month="jun-2026">
+          <div class="month-header russia">
+            <span>📅 ИЮНЬ 2026 — РОССИЯ</span>
+            <span class="event-count month-count">2 события</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-high"
+              data-month="jun-2026"
+              data-city="moscow"
+              data-priority="high"
+            >
+              <div class="event-name">VidMK26</div>
+              <div class="event-date">5-6 июня</div>
+              <div class="event-location">Soluxe Hotel, Москва</div>
+              <div class="event-description">
+                X ежегодный форум создателей кино и видео. 100+ спикеров, 2000+
+                участников, 7 залов.
+              </div>
+              <div class="event-team">👥 1-2 креативщика</div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="jun-2026"
+              data-city="spb"
+              data-priority="medium"
+            >
+              <div class="event-name">ПМЭФ 2026</div>
+              <div class="event-date">3-6 июня</div>
+              <div class="event-location">Санкт-Петербург</div>
+              <div class="event-description">
+                Петербургский международный экономический форум. 24 000
+                участников.
+              </div>
+              <div class="event-team">👥 1 человек</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ИЮНЬ 2026 - МЕЖДУНАРОДНЫЕ -->
+        <div class="month-block" data-month="jun-2026">
+          <div class="month-header international">
+            <span>📅 ИЮНЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
+            <span class="event-count month-count">1 событие</span>
+          </div>
+        </div>
+
+        <!-- ИЮЛЬ 2026 -->
+        <div class="month-block" data-month="jul-2026">
+          <div class="month-header russia">
+            <span>📅 ИЮЛЬ 2026 — РОССИЯ</span>
+            <span class="event-count month-count">2 события</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-medium"
+              data-month="jul-2026"
+              data-city="spb"
+              data-priority="medium"
+            >
+              <div class="event-name">Gamma Festival 2026 - X edition</div>
+              <div class="event-date">3-6 июля</div>
+              <div class="event-location">Санкт-Петербург</div>
+              <div class="event-description">
+                Фестиваль электронной музыки и современной культуры
+              </div>
+              <div class="event-team">👥 1-2 человека</div>
+            </div>
+            <div
+              class="event-card"
+              data-month="jul-2026"
+              data-city="moscow"
+              data-priority="low"
+            >
+              <div class="event-name">Epic Con Russia</div>
+              <div class="event-date">4-5 июля</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                Фестиваль фантастики, фан-культура. Вдохновение для креативов.
+              </div>
+              <div class="event-team">👥 1-2 человека</div>
+            </div>
+            <div
+              class="event-card"
+              data-month="jul-2026"
+              data-city="spb"
+              data-priority="low"
+            >
+              <div class="event-name">Дивный остров</div>
+              <div class="event-date">23-26 июля</div>
+              <div class="event-location">Санкт-Петербург</div>
+              <div class="event-description">
+                Творчество, танец, театр, выставки.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- АВГУСТ-СЕНТЯБРЬ 2026 - РОССИЯ -->
+        <div class="month-block" data-month="aug-sep-2026">
+          <div class="month-header russia">
+            <span>📅 АВГУСТ-СЕНТЯБРЬ 2026 — РОССИЯ</span>
+            <span class="event-count month-count">4 события</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-medium"
+              data-month="aug-sep-2026"
+              data-city="moscow"
+              data-priority="medium"
+            >
+              <div class="event-name">Московская книжная ярмарка</div>
+              <div class="event-date">3-7 сентября</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                300+ издателей, встречи с авторами. Контент для экранизаций.
+              </div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="aug-sep-2026"
+              data-city="moscow"
+              data-priority="medium"
+            >
+              <div class="event-name">МТК-2026</div>
+              <div class="event-date">8-10 сентября</div>
+              <div class="event-location">Москва</div>
+              <div class="event-description">
+                800+ спикеров, 20+ треков. Медиа и технологии.
+              </div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="aug-sep-2026"
+              data-city="spb"
+              data-priority="medium"
+            >
+              <div class="event-name">Российские дни дизайна и архитектуры</div>
+              <div class="event-date">23-25 сентября</div>
+              <div class="event-location">Санкт-Петербург</div>
+              <div class="event-description">
+                Дизайн, архитектура, пространства.
+              </div>
+              <div class="event-team">👥 1 дизайнер</div>
+            </div>
+            <div
+              class="event-card"
+              data-month="aug-sep-2026"
+              data-city="russia-other"
+              data-priority="low"
+            >
+              <div class="event-name">Kazan Digital Week</div>
+              <div class="event-date">Сентябрь</div>
+              <div class="event-location">Казань</div>
+              <div class="event-description">
+                Цифровые технологии, инновации.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- АВГУСТ-СЕНТЯБРЬ 2026 - МЕЖДУНАРОДНЫЕ -->
+        <div class="month-block" data-month="aug-sep-2026">
+          <div class="month-header international">
+            <span>📅 АВГУСТ-СЕНТЯБРЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
+            <span class="event-count month-count">2 события</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-medium"
+              data-month="aug-sep-2026"
+              data-city="international"
+              data-priority="medium"
+            >
+              <div class="event-name">Burning Man 2026</div>
+              <div class="event-date">30 августа - 7 сентября</div>
+              <div class="event-location">Невада, США</div>
+              <div class="event-description">
+                70 000 людей в пустыне. 2000 арт-инсталляций. Экстремальное
+                вдохновение.
+              </div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="aug-sep-2026"
+              data-city="international"
+              data-priority="medium"
+            >
+              <div class="event-name">DMEXCO 2026</div>
+              <div class="event-date">23-24 сентября</div>
+              <div class="event-location">Кельн, Германия</div>
+              <div class="event-description">
+                40 000 маркетинг-лидеров. Главная конференция по цифровому
+                маркетингу в Европе.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ОКТЯБРЬ 2026 - МЕЖДУНАРОДНЫЕ -->
+        <div class="month-block" data-month="oct-2026">
+          <div class="month-header international">
+            <span>📅 ОКТЯБРЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
+            <span class="event-count month-count">2 события</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-medium"
+              data-month="oct-2026"
+              data-city="international"
+              data-priority="medium"
+            >
+              <div class="event-name">Adobe MAX 2026</div>
+              <div class="event-date">26-28 октября</div>
+              <div class="event-location">Лос-Анджелес, США</div>
+              <div class="event-description">
+                200+ мастер-классов. Generative AI, 3D, Video Production.
+              </div>
+              <div class="event-team">👥 2-3 дизайнера</div>
+            </div>
+            <div
+              class="event-card priority-medium"
+              data-month="oct-2026"
+              data-city="international"
+              data-priority="medium"
+            >
+              <div class="event-name">MIPCOM 2026</div>
+              <div class="event-date">12-15 октября</div>
+              <div class="event-location">Канны, Франция</div>
+              <div class="event-description">
+                Международный маркетплейс контента. Режиссеры, продюсеры,
+                платформы.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- НОЯБРЬ 2026 - МЕЖДУНАРОДНЫЕ -->
+        <div class="month-block" data-month="nov-2026">
+          <div class="month-header international">
+            <span>📅 НОЯБРЬ 2026 — МЕЖДУНАРОДНЫЕ</span>
+            <span class="event-count month-count">1 событие</span>
+          </div>
+          <div class="events-grid">
+            <div
+              class="event-card priority-high"
+              data-month="nov-2026"
+              data-city="international"
+              data-priority="high"
+            >
+              <div class="event-name">Web Summit Lisbon 2026</div>
+              <div class="event-date">9-12 ноября</div>
+              <div class="event-location">Лиссабон, Португалия</div>
+              <div class="event-description">
+                🚀 ГЛАВНЫЙ ГЛОБАЛЬНЫЙ TECH-ФОРУМ! 70 000+ участников, 1200+
+                спикеров, 160+ стран.
+              </div>
+              <div class="event-team">👥 Директор + 2-3 лидера</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          📧 Документ подготовлен для планирования развития команды на 2025-2026
+        </p>
+        <p style="margin-top: 10px; opacity: 0.7">
+          Рекомендуемый бюджет: $20-40k USD на команду | Приоритет: НАТEXPO →
+          CSTB → SOLD OUT → Cannes Lions
+        </p>
+      </footer>
     </div>
 
     <script>
-        // Подсчёт общего количества событий
-        function countEvents() {
-            const allCards = document.querySelectorAll('.event-card');
-            const visibleCards = document.querySelectorAll('.event-card:not(.hidden)');
-            document.getElementById('total-count').textContent = allCards.length;
-            document.getElementById('visible-count').textContent = visibleCards.length;
+      // Подсчёт общего количества событий
+      function countEvents() {
+        const allCards = document.querySelectorAll(".event-card");
+        const visibleCards = document.querySelectorAll(
+          ".event-card:not(.hidden)"
+        );
+        document.getElementById("total-count").textContent = allCards.length;
+        document.getElementById("visible-count").textContent =
+          visibleCards.length;
 
-            // Показать/скрыть сообщение "нет результатов"
-            const noResults = document.getElementById('no-results');
-            const topEvents = document.getElementById('top-events');
-            if (visibleCards.length === 0) {
-                noResults.classList.add('show');
-                topEvents.style.display = 'none';
-            } else {
-                noResults.classList.remove('show');
-                topEvents.style.display = 'block';
-            }
-
-            // Скрыть пустые месяц-блоки
-            document.querySelectorAll('.month-block').forEach(block => {
-                const visibleInBlock = block.querySelectorAll('.event-card:not(.hidden)').length;
-                block.style.display = visibleInBlock > 0 ? 'block' : 'none';
-
-                // Обновить счётчик в заголовке месяца
-                const countSpan = block.querySelector('.month-count');
-                if (countSpan) {
-                    countSpan.textContent = visibleInBlock + ' событ' + 
-                        (visibleInBlock === 1 ? 'ие' : (visibleInBlock < 5 ? 'ия' : 'ий'));
-                }
-            });
+        // Показать/скрыть сообщение "нет результатов"
+        const noResults = document.getElementById("no-results");
+        const topEvents = document.getElementById("top-events");
+        if (visibleCards.length === 0) {
+          noResults.classList.add("show");
+          topEvents.style.display = "none";
+        } else {
+          noResults.classList.remove("show");
+          topEvents.style.display = "block";
         }
 
-        function applyFilters() {
-            const monthFilter = document.getElementById('filter-month').value;
-            const cityFilter = document.getElementById('filter-city').value;
-            const priorityFilter = document.getElementById('filter-priority').value;
+        // Скрыть пустые месяц-блоки
+        document.querySelectorAll(".month-block").forEach((block) => {
+          const visibleInBlock = block.querySelectorAll(
+            ".event-card:not(.hidden)"
+          ).length;
+          block.style.display = visibleInBlock > 0 ? "block" : "none";
 
-            const cards = document.querySelectorAll('.event-card');
+          // Обновить счётчик в заголовке месяца
+          const countSpan = block.querySelector(".month-count");
+          if (countSpan) {
+            countSpan.textContent =
+              visibleInBlock +
+              " событ" +
+              (visibleInBlock === 1 ? "ие" : visibleInBlock < 5 ? "ия" : "ий");
+          }
+        });
+      }
 
-            cards.forEach(card => {
-                const cardMonth = card.getAttribute('data-month');
-                const cardCity = card.getAttribute('data-city');
-                const cardPriority = card.getAttribute('data-priority');
+      function applyFilters() {
+        const monthFilter = document.getElementById("filter-month").value;
+        const cityFilter = document.getElementById("filter-city").value;
+        const priorityFilter = document.getElementById("filter-priority").value;
 
-                let showCard = true;
+        const cards = document.querySelectorAll(".event-card");
 
-                // Фильтр по месяцу
-                if (monthFilter !== 'all' && cardMonth !== monthFilter) {
-                    showCard = false;
-                }
+        cards.forEach((card) => {
+          const cardMonth = card.getAttribute("data-month");
+          const cardCity = card.getAttribute("data-city");
+          const cardPriority = card.getAttribute("data-priority");
 
-                // Фильтр по городу
-                if (cityFilter !== 'all' && cardCity !== cityFilter) {
-                    showCard = false;
-                }
+          let showCard = true;
 
-                // Фильтр по приоритету
-                if (priorityFilter !== 'all' && cardPriority !== priorityFilter) {
-                    showCard = false;
-                }
+          // Фильтр по месяцу
+          if (monthFilter !== "all" && cardMonth !== monthFilter) {
+            showCard = false;
+          }
 
-                if (showCard) {
-                    card.classList.remove('hidden');
-                } else {
-                    card.classList.add('hidden');
-                }
-            });
+          // Фильтр по городу
+          if (cityFilter !== "all" && cardCity !== cityFilter) {
+            showCard = false;
+          }
 
-            countEvents();
+          // Фильтр по приоритету
+          if (priorityFilter !== "all" && cardPriority !== priorityFilter) {
+            showCard = false;
+          }
 
-            // Скрыть топ-8 если применены фильтры
-            const topEvents = document.getElementById('top-events');
-            if (monthFilter !== 'all' || cityFilter !== 'all' || priorityFilter !== 'all') {
-                topEvents.style.display = 'none';
-            } else {
-                topEvents.style.display = 'block';
-            }
+          if (showCard) {
+            card.classList.remove("hidden");
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        countEvents();
+
+        // Скрыть топ-8 если применены фильтры
+        const topEvents = document.getElementById("top-events");
+        if (
+          monthFilter !== "all" ||
+          cityFilter !== "all" ||
+          priorityFilter !== "all"
+        ) {
+          topEvents.style.display = "none";
+        } else {
+          topEvents.style.display = "block";
         }
+      }
 
-        function resetFilters() {
-            document.getElementById('filter-month').value = 'all';
-            document.getElementById('filter-city').value = 'all';
-            document.getElementById('filter-priority').value = 'all';
+      function resetFilters() {
+        document.getElementById("filter-month").value = "all";
+        document.getElementById("filter-city").value = "all";
+        document.getElementById("filter-priority").value = "all";
 
-            const cards = document.querySelectorAll('.event-card');
-            cards.forEach(card => {
-                card.classList.remove('hidden');
-            });
+        const cards = document.querySelectorAll(".event-card");
+        cards.forEach((card) => {
+          card.classList.remove("hidden");
+        });
 
-            document.querySelectorAll('.month-block').forEach(block => {
-                block.style.display = 'block';
-            });
+        document.querySelectorAll(".month-block").forEach((block) => {
+          block.style.display = "block";
+        });
 
-            document.getElementById('top-events').style.display = 'block';
-            document.getElementById('no-results').classList.remove('show');
+        document.getElementById("top-events").style.display = "block";
+        document.getElementById("no-results").classList.remove("show");
 
-            countEvents();
-        }
+        countEvents();
+      }
 
-        // Автоматическое применение фильтров при изменении
-        document.getElementById('filter-month').addEventListener('change', applyFilters);
-        document.getElementById('filter-city').addEventListener('change', applyFilters);
-        document.getElementById('filter-priority').addEventListener('change', applyFilters);
+      // Автоматическое применение фильтров при изменении
+      document
+        .getElementById("filter-month")
+        .addEventListener("change", applyFilters);
+      document
+        .getElementById("filter-city")
+        .addEventListener("change", applyFilters);
+      document
+        .getElementById("filter-priority")
+        .addEventListener("change", applyFilters);
 
-        // Инициализация счётчика при загрузке
-        document.addEventListener('DOMContentLoaded', countEvents);
+      document.addEventListener("DOMContentLoaded", countEvents);
     </script>
-</body>
+  </body>
 </html>
