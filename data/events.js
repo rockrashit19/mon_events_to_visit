@@ -31,7 +31,6 @@
 // =============================================================
 
 const EVENTS_DATA = [
-
   // ═══════════════════════════════════════════════
   //  ЯНВАРЬ 2026
   // ═══════════════════════════════════════════════
@@ -47,7 +46,7 @@ const EVENTS_DATA = [
     link: "https://eventawardsrussia.com",
     naom_participation: "Скидка на участие 20%",
     type: "award",
-    tags: ["ивент", "премия"]
+    tags: ["ивент", "премия"],
   },
   {
     id: 2,
@@ -59,7 +58,7 @@ const EVENTS_DATA = [
     description: "Партнёрское мероприятие.",
     link: "https://moscow-traditions.ru/",
     type: "festival",
-    tags: ["культура"]
+    tags: ["культура"],
   },
   {
     id: 3,
@@ -72,7 +71,7 @@ const EVENTS_DATA = [
     link: "https://forms.yandex.ru/u/69200e9d5056900d5fbbfe00/",
     naom_participation: "БЕСПЛАТНО",
     type: "conference",
-    tags: ["ивент", "технологии"]
+    tags: ["ивент", "технологии"],
   },
   {
     id: 4,
@@ -85,7 +84,7 @@ const EVENTS_DATA = [
     link: "https://naom-event.timepad.ru/event/3747752/",
     naom_participation: "БЕСПЛАТНО",
     type: "webinar",
-    tags: ["тренды", "НАОМ"]
+    tags: ["тренды", "НАОМ"],
   },
   {
     id: 5,
@@ -94,10 +93,11 @@ const EVENTS_DATA = [
     month: "jan-2026",
     city: "spb",
     importance: "medium",
-    description: "Международная премия коммуникационных практик в области туризма.",
+    description:
+      "Международная премия коммуникационных практик в области туризма.",
     link: "https://rupor-award.ru",
     type: "award",
-    tags: ["туризм", "коммуникации"]
+    tags: ["туризм", "коммуникации"],
   },
   {
     id: 6,
@@ -111,7 +111,7 @@ const EVENTS_DATA = [
     naom_participation: "Панель НАОМ",
     is_featured: true,
     type: "forum",
-    tags: ["ивент", "MICE", "НАОМ"]
+    tags: ["ивент", "MICE", "НАОМ"],
   },
   {
     id: 7,
@@ -124,7 +124,7 @@ const EVENTS_DATA = [
     link: "https://forms.yandex.ru/u/69200e9d5056900d5fbbfe00/",
     naom_participation: "БЕСПЛАТНО",
     type: "conference",
-    tags: ["ивент"]
+    tags: ["ивент"],
   },
   {
     id: 8,
@@ -133,10 +133,11 @@ const EVENTS_DATA = [
     month: "jan-2026",
     city: "moscow",
     importance: "medium",
-    description: "12 000 кв.м выставка народного искусства и дизайна. Масштабный дизайн-проект.",
+    description:
+      "12 000 кв.м выставка народного искусства и дизайна. Масштабный дизайн-проект.",
     recommended: "Дизайнеры",
     type: "festival",
-    tags: ["дизайн", "искусство"]
+    tags: ["дизайн", "искусство"],
   },
   {
     id: 9,
@@ -145,10 +146,11 @@ const EVENTS_DATA = [
     month: "jan-2026",
     city: "moscow",
     importance: "medium",
-    description: "100 нейрокреаторов, 25 команд за 24 часа создают рекламное AI-видео.",
+    description:
+      "100 нейрокреаторов, 25 команд за 24 часа создают рекламное AI-видео.",
     recommended: "1-2 креативщика",
     type: "festival",
-    tags: ["AI", "видео", "хакатон"]
+    tags: ["AI", "видео", "хакатон"],
   },
 
   // ═══════════════════════════════════════════════
@@ -166,7 +168,7 @@ const EVENTS_DATA = [
     naom_participation: "20 000 руб.",
     is_featured: true,
     type: "forum",
-    tags: ["НАОМ"]
+    tags: ["НАОМ"],
   },
   {
     id: 11,
@@ -179,7 +181,7 @@ const EVENTS_DATA = [
     link: "https://eventawardsrussia.com",
     naom_participation: "Скидка на участие 20%",
     type: "award",
-    tags: ["ивент", "премия"]
+    tags: ["ивент", "премия"],
   },
   {
     id: 12,
@@ -191,7 +193,7 @@ const EVENTS_DATA = [
     description: "Премия в сфере ивент-индустрии.",
     link: "https://bemafestival.ru/#main_awards_title",
     type: "award",
-    tags: ["ивент", "премия"]
+    tags: ["ивент", "премия"],
   },
   {
     id: 13,
@@ -203,7 +205,7 @@ const EVENTS_DATA = [
     description: "Онлайн-дискуссия НАОМ на тему HR.",
     naom_participation: "БЕСПЛАТНО",
     type: "webinar",
-    tags: ["HR", "НАОМ"]
+    tags: ["HR", "НАОМ"],
   },
   {
     id: 14,
@@ -215,7 +217,7 @@ const EVENTS_DATA = [
     description: "Всероссийский форум по обучению и развитию персонала.",
     link: "https://www.mk-conference.ru/obychenie",
     type: "forum",
-    tags: ["HR", "обучение"]
+    tags: ["HR", "обучение"],
   },
   {
     id: 15,
@@ -224,11 +226,12 @@ const EVENTS_DATA = [
     month: "feb-2026",
     city: "moscow",
     importance: "high",
-    description: "28-й форум медиаиндустрии. 5300+ специалистов. ИИ в продакшене, Virtual Production.",
+    description:
+      "28-й форум медиаиндустрии. 5300+ специалистов. ИИ в продакшене, Virtual Production.",
     recommended: "2-3 человека",
     is_featured: true,
     type: "forum",
-    tags: ["медиа", "AI", "производство"]
+    tags: ["медиа", "AI", "производство"],
   },
   {
     id: 16,
@@ -240,7 +243,7 @@ const EVENTS_DATA = [
     description: "Медиа-коммуникации, работа с блогерами, AI в PR, ROI.",
     recommended: "1-2 человека",
     type: "forum",
-    tags: ["PR", "маркетинг", "AI"]
+    tags: ["PR", "маркетинг", "AI"],
   },
   {
     id: 17,
@@ -252,7 +255,7 @@ const EVENTS_DATA = [
     description: "Региональный форум рекламной индустрии.",
     recommended: "1 человек",
     type: "forum",
-    tags: ["реклама", "маркетинг"]
+    tags: ["реклама", "маркетинг"],
   },
   {
     id: 18,
@@ -261,10 +264,11 @@ const EVENTS_DATA = [
     month: "feb-2026",
     city: "moscow",
     importance: "low",
-    description: "Международная выставка мебели, интерьерных решений и искусства.",
+    description:
+      "Международная выставка мебели, интерьерных решений и искусства.",
     link: "https://artdom-design.ru/visitors-digital26",
     type: "festival",
-    tags: ["дизайн", "искусство"]
+    tags: ["дизайн", "искусство"],
   },
   {
     id: 19,
@@ -276,7 +280,7 @@ const EVENTS_DATA = [
     description: "Выставка-форум для профессионалов туриндустрии и HoReCa.",
     link: "https://sezoncrimea.ru",
     type: "forum",
-    tags: ["туризм", "HoReCa"]
+    tags: ["туризм", "HoReCa"],
   },
 
   // ═══════════════════════════════════════════════
@@ -290,13 +294,14 @@ const EVENTS_DATA = [
     month: "mar-2026",
     city: "spb",
     importance: "high",
-    description: "Главный форум об организации и продвижении событий в России. 2 дня программы, нетворкинг.",
+    description:
+      "Главный форум об организации и продвижении событий в России. 2 дня программы, нетворкинг.",
     recommended: "Весь team!",
     link: "https://soldoutconf.ru",
     naom_participation: "Промокод НАОМ — скидка 10%, при 10+ билетах — 20%",
     is_featured: true,
     type: "forum",
-    tags: ["ивент", "продажи", "НАОМ"]
+    tags: ["ивент", "продажи", "НАОМ"],
   },
   {
     id: 21,
@@ -305,10 +310,11 @@ const EVENTS_DATA = [
     month: "mar-2026",
     city: "moscow",
     importance: "high",
-    description: "Экранизации, сериалы, Virtual Production, AI в видеопроизводстве.",
+    description:
+      "Экранизации, сериалы, Virtual Production, AI в видеопроизводстве.",
     recommended: "1-2 креативщика",
     type: "festival",
-    tags: ["контент", "AI", "видео"]
+    tags: ["контент", "AI", "видео"],
   },
   {
     id: 22,
@@ -317,10 +323,11 @@ const EVENTS_DATA = [
     month: "mar-2026",
     city: "moscow",
     importance: "low",
-    description: "Стратегия и тактика корпоративного обучения и развития персонала.",
+    description:
+      "Стратегия и тактика корпоративного обучения и развития персонала.",
     link: "https://b-forums.ru/td-day",
     type: "forum",
-    tags: ["HR", "обучение"]
+    tags: ["HR", "обучение"],
   },
   {
     id: 23,
@@ -333,7 +340,7 @@ const EVENTS_DATA = [
     recommended: "1 человек",
     link: "https://neiragroup.com/marketing-forum2026",
     type: "forum",
-    tags: ["маркетинг", "B2B", "AI"]
+    tags: ["маркетинг", "B2B", "AI"],
   },
   {
     id: 24,
@@ -342,11 +349,12 @@ const EVENTS_DATA = [
     month: "mar-2026",
     city: "moscow",
     importance: "medium",
-    description: "Профессиональная площадка для диалога между заказчиками и MICE-продуктами.",
+    description:
+      "Профессиональная площадка для диалога между заказчиками и MICE-продуктами.",
     link: "https://beinrussia.ru/meropriyatiya_be_in_russia",
     naom_participation: "Выступление Юлии Жоля",
     type: "forum",
-    tags: ["MICE", "НАОМ"]
+    tags: ["MICE", "НАОМ"],
   },
   {
     id: 25,
@@ -355,10 +363,11 @@ const EVENTS_DATA = [
     month: "mar-2026",
     city: "moscow",
     importance: "low",
-    description: "Выставка-форум по маркетингу, продажам и клиентскому сервису.",
+    description:
+      "Выставка-форум по маркетингу, продажам и клиентскому сервису.",
     link: "https://force-forum.ru/",
     type: "forum",
-    tags: ["маркетинг", "продажи"]
+    tags: ["маркетинг", "продажи"],
   },
   {
     id: 26,
@@ -370,7 +379,7 @@ const EVENTS_DATA = [
     description: "Крупная IT-конференция.",
     link: "https://moscow2026.mergeconf.ru/",
     type: "conference",
-    tags: ["IT", "технологии"]
+    tags: ["IT", "технологии"],
   },
   {
     id: 27,
@@ -383,7 +392,7 @@ const EVENTS_DATA = [
     link: "https://mitt.ru/ru/business-programme/sessions_2026/MICE/",
     naom_participation: "Условия уточняются",
     type: "conference",
-    tags: ["MICE", "туризм"]
+    tags: ["MICE", "туризм"],
   },
   {
     id: 28,
@@ -394,7 +403,7 @@ const EVENTS_DATA = [
     importance: "medium",
     description: "Fashion-индустрия, дизайн, тренды.",
     type: "festival",
-    tags: ["мода", "дизайн"]
+    tags: ["мода", "дизайн"],
   },
   {
     id: 29,
@@ -407,7 +416,7 @@ const EVENTS_DATA = [
     recommended: "1 человек",
     link: "https://globaltechforum.ru/",
     type: "forum",
-    tags: ["технологии", "цифровая трансформация"]
+    tags: ["технологии", "цифровая трансформация"],
   },
   {
     id: 30,
@@ -420,7 +429,7 @@ const EVENTS_DATA = [
     link: "https://mice-excellence.ru/",
     naom_participation: "Условия уточняются",
     type: "conference",
-    tags: ["MICE"]
+    tags: ["MICE"],
   },
   {
     id: 31,
@@ -431,7 +440,7 @@ const EVENTS_DATA = [
     importance: "low",
     description: "360° фестиваль искусств и творчества.",
     type: "festival",
-    tags: ["искусство", "творчество"]
+    tags: ["искусство", "творчество"],
   },
 
   // ═══════════════════════════════════════════════
@@ -445,11 +454,12 @@ const EVENTS_DATA = [
     month: "apr-2026",
     city: "russia-other",
     importance: "high",
-    description: "Возрождение легендарного фестиваля! 1000+ заявок, 37 экспертов-жюри. Топ-агентства России.",
+    description:
+      "Возрождение легендарного фестиваля! 1000+ заявок, 37 экспертов-жюри. Топ-агентства России.",
     recommended: "1-2 креативщика",
     is_featured: true,
     type: "festival",
-    tags: ["креатив", "ивент"]
+    tags: ["креатив", "ивент"],
   },
   {
     id: 33,
@@ -458,10 +468,11 @@ const EVENTS_DATA = [
     month: "apr-2026",
     city: "moscow",
     importance: "medium",
-    description: "Всероссийская конференция режиссёров, постановщиков и event-экспертов.",
+    description:
+      "Всероссийская конференция режиссёров, постановщиков и event-экспертов.",
     link: "https://rpg-conference.ru/",
     type: "conference",
-    tags: ["ивент", "режиссура"]
+    tags: ["ивент", "режиссура"],
   },
   {
     id: 34,
@@ -470,10 +481,11 @@ const EVENTS_DATA = [
     month: "apr-2026",
     city: "moscow",
     importance: "medium",
-    description: "20 000+ участников. Web3, Metaverse, NFT, blockchain в медиа.",
+    description:
+      "20 000+ участников. Web3, Metaverse, NFT, blockchain в медиа.",
     recommended: "1 человек",
     type: "forum",
-    tags: ["blockchain", "Web3", "технологии"]
+    tags: ["blockchain", "Web3", "технологии"],
   },
   {
     id: 35,
@@ -485,7 +497,7 @@ const EVENTS_DATA = [
     description: "Международный форум по искусственному интеллекту.",
     link: "https://www.digital-calendar.ru/ai-future-2026/",
     type: "forum",
-    tags: ["AI", "технологии"]
+    tags: ["AI", "технологии"],
   },
   {
     id: 36,
@@ -496,7 +508,7 @@ const EVENTS_DATA = [
     importance: "medium",
     description: "Связь-2026, Навитех, ICEE. Технологические инновации.",
     type: "festival",
-    tags: ["технологии", "инновации"]
+    tags: ["технологии", "инновации"],
   },
   {
     id: 37,
@@ -509,7 +521,7 @@ const EVENTS_DATA = [
     link: "https://bfup.ru/",
     naom_participation: "Условия уточняются",
     type: "festival",
-    tags: ["ивент", "MICE"]
+    tags: ["ивент", "MICE"],
   },
   {
     id: 38,
@@ -521,7 +533,7 @@ const EVENTS_DATA = [
     description: "Практическая конференция для продакт-менеджеров в эпоху AI.",
     link: "https://productconf.ru/",
     type: "conference",
-    tags: ["AI", "product"]
+    tags: ["AI", "product"],
   },
   {
     id: 39,
@@ -530,11 +542,12 @@ const EVENTS_DATA = [
     month: "apr-2026",
     city: "international",
     importance: "high",
-    description: "⚠️ Последний год в Ванкувере! 1000 участников, 80+ TED Talks. Стоимость ~$12 000 USD.",
+    description:
+      "⚠️ Последний год в Ванкувере! 1000 участников, 80+ TED Talks. Стоимость ~$12 000 USD.",
     recommended: "Директор + 1-2 лидера",
     is_featured: true,
     type: "conference",
-    tags: ["вдохновение", "тренды"]
+    tags: ["вдохновение", "тренды"],
   },
 
   // ═══════════════════════════════════════════════
@@ -551,7 +564,7 @@ const EVENTS_DATA = [
     description: "От фронтенда до бэкенда.",
     link: "https://holyjs.ru/",
     type: "conference",
-    tags: ["IT", "разработка"]
+    tags: ["IT", "разработка"],
   },
   {
     id: 41,
@@ -564,7 +577,7 @@ const EVENTS_DATA = [
     link: "https://mice-awards.com",
     naom_participation: "Условия уточняются",
     type: "award",
-    tags: ["MICE", "премия"]
+    tags: ["MICE", "премия"],
   },
   {
     id: 42,
@@ -576,7 +589,7 @@ const EVENTS_DATA = [
     description: "Дизайн офисных пространств, AI в дизайне.",
     recommended: "1 человек",
     type: "conference",
-    tags: ["дизайн", "AI"]
+    tags: ["дизайн", "AI"],
   },
   {
     id: 43,
@@ -585,11 +598,12 @@ const EVENTS_DATA = [
     month: "may-2026",
     city: "international",
     importance: "high",
-    description: "🏆 Олимпиада креативной индустрии! 50 000 участников. Лучшие креативные работы мира.",
+    description:
+      "🏆 Олимпиада креативной индустрии! 50 000 участников. Лучшие креативные работы мира.",
     recommended: "2-3 креативщика + менеджмент",
     is_featured: true,
     type: "festival",
-    tags: ["реклама", "креатив", "маркетинг"]
+    tags: ["реклама", "креатив", "маркетинг"],
   },
 
   // ═══════════════════════════════════════════════
@@ -606,7 +620,7 @@ const EVENTS_DATA = [
     description: "Конференция об управлении командами, процессами и собой.",
     link: "https://peoplesense.ru/",
     type: "conference",
-    tags: ["HR", "управление"]
+    tags: ["HR", "управление"],
   },
   {
     id: 45,
@@ -615,11 +629,12 @@ const EVENTS_DATA = [
     month: "jun-2026",
     city: "moscow",
     importance: "high",
-    description: "X ежегодный форум создателей кино и видео. 100+ спикеров, 2000+ участников, 7 залов.",
+    description:
+      "X ежегодный форум создателей кино и видео. 100+ спикеров, 2000+ участников, 7 залов.",
     recommended: "1-2 креативщика",
     is_featured: true,
     type: "forum",
-    tags: ["видео", "кино", "AI"]
+    tags: ["видео", "кино", "AI"],
   },
   {
     id: 46,
@@ -628,10 +643,11 @@ const EVENTS_DATA = [
     month: "jun-2026",
     city: "spb",
     importance: "medium",
-    description: "Петербургский международный экономический форум. 24 000 участников.",
+    description:
+      "Петербургский международный экономический форум. 24 000 участников.",
     recommended: "1 человек",
     type: "forum",
-    tags: ["экономика", "бизнес"]
+    tags: ["экономика", "бизнес"],
   },
   {
     id: 47,
@@ -643,7 +659,7 @@ const EVENTS_DATA = [
     description: "VI Ежегодный Всероссийский форум по проектному управлению.",
     link: "https://interforums.ru/pm26/home",
     type: "forum",
-    tags: ["управление проектами", "бизнес"]
+    tags: ["управление проектами", "бизнес"],
   },
 
   // ═══════════════════════════════════════════════
@@ -660,7 +676,7 @@ const EVENTS_DATA = [
     description: "Фестиваль электронной музыки и современной культуры.",
     recommended: "1-2 человека",
     type: "festival",
-    tags: ["музыка", "культура"]
+    tags: ["музыка", "культура"],
   },
   {
     id: 49,
@@ -669,10 +685,11 @@ const EVENTS_DATA = [
     month: "jul-2026",
     city: "moscow",
     importance: "low",
-    description: "Фестиваль фантастики, фан-культура. Вдохновение для креативов.",
+    description:
+      "Фестиваль фантастики, фан-культура. Вдохновение для креативов.",
     recommended: "1-2 человека",
     type: "festival",
-    tags: ["фестиваль", "культура"]
+    tags: ["фестиваль", "культура"],
   },
   {
     id: 50,
@@ -683,7 +700,7 @@ const EVENTS_DATA = [
     importance: "low",
     description: "Творчество, танец, театр, выставки.",
     type: "festival",
-    tags: ["искусство", "творчество"]
+    tags: ["искусство", "творчество"],
   },
 
   // ═══════════════════════════════════════════════
@@ -700,7 +717,7 @@ const EVENTS_DATA = [
     description: "Well-being, корпоративная культура и коммуникации.",
     link: "https://www.mk-conference.ru/hrlife",
     type: "forum",
-    tags: ["HR", "корпоративная культура"]
+    tags: ["HR", "корпоративная культура"],
   },
   {
     id: 52,
@@ -711,7 +728,7 @@ const EVENTS_DATA = [
     importance: "medium",
     description: "300+ издателей, встречи с авторами. Контент для экранизаций.",
     type: "festival",
-    tags: ["книги", "контент"]
+    tags: ["книги", "контент"],
   },
   {
     id: 53,
@@ -720,9 +737,10 @@ const EVENTS_DATA = [
     month: "aug-2026",
     city: "international",
     importance: "medium",
-    description: "70 000 людей в пустыне. 2000 арт-инсталляций. Экстремальное вдохновение.",
+    description:
+      "70 000 людей в пустыне. 2000 арт-инсталляций. Экстремальное вдохновение.",
     type: "festival",
-    tags: ["фестиваль", "арт", "вдохновение"]
+    tags: ["фестиваль", "арт", "вдохновение"],
   },
 
   // ═══════════════════════════════════════════════
@@ -738,7 +756,7 @@ const EVENTS_DATA = [
     importance: "medium",
     description: "800+ спикеров, 20+ треков. Медиа и технологии.",
     type: "forum",
-    tags: ["медиа", "технологии"]
+    tags: ["медиа", "технологии"],
   },
   {
     id: 55,
@@ -750,7 +768,7 @@ const EVENTS_DATA = [
     description: "Дизайн, архитектура, пространства.",
     recommended: "1 дизайнер",
     type: "festival",
-    tags: ["дизайн", "архитектура"]
+    tags: ["дизайн", "архитектура"],
   },
   {
     id: 56,
@@ -761,7 +779,7 @@ const EVENTS_DATA = [
     importance: "low",
     description: "Цифровые технологии, инновации.",
     type: "conference",
-    tags: ["цифровые технологии", "инновации"]
+    tags: ["цифровые технологии", "инновации"],
   },
   {
     id: 57,
@@ -774,7 +792,7 @@ const EVENTS_DATA = [
     link: "https://perspectum.ru",
     naom_participation: "Скидка 10% (указать, что резидент MON)",
     type: "award",
-    tags: ["маркетинг", "премия"]
+    tags: ["маркетинг", "премия"],
   },
   {
     id: 58,
@@ -783,9 +801,10 @@ const EVENTS_DATA = [
     month: "sep-2026",
     city: "international",
     importance: "medium",
-    description: "40 000 маркетинг-лидеров. Главная конференция по цифровому маркетингу в Европе.",
+    description:
+      "40 000 маркетинг-лидеров. Главная конференция по цифровому маркетингу в Европе.",
     type: "conference",
-    tags: ["маркетинг", "цифровые технологии"]
+    tags: ["маркетинг", "цифровые технологии"],
   },
 
   // ═══════════════════════════════════════════════
@@ -802,7 +821,7 @@ const EVENTS_DATA = [
     description: "200+ мастер-классов. Generative AI, 3D, Video Production.",
     recommended: "2-3 дизайнера",
     type: "conference",
-    tags: ["дизайн", "AI", "видео"]
+    tags: ["дизайн", "AI", "видео"],
   },
   {
     id: 60,
@@ -811,9 +830,10 @@ const EVENTS_DATA = [
     month: "oct-2026",
     city: "international",
     importance: "medium",
-    description: "Международный маркетплейс контента. Режиссёры, продюсеры, платформы.",
+    description:
+      "Международный маркетплейс контента. Режиссёры, продюсеры, платформы.",
     type: "conference",
-    tags: ["контент", "кино", "медиа"]
+    tags: ["контент", "кино", "медиа"],
   },
 
   // ═══════════════════════════════════════════════
@@ -830,7 +850,7 @@ const EVENTS_DATA = [
     description: "Главный форум MICE-индустрии.",
     link: "https://mice-excellence.ru/",
     type: "forum",
-    tags: ["MICE", "ивент"]
+    tags: ["MICE", "ивент"],
   },
   {
     id: 62,
@@ -839,10 +859,11 @@ const EVENTS_DATA = [
     month: "nov-2026",
     city: "moscow",
     importance: "medium",
-    description: "Конференция про искусственный интеллект и технологии в бизнесе.",
+    description:
+      "Конференция про искусственный интеллект и технологии в бизнесе.",
     link: "https://techweek.moscow/",
     type: "conference",
-    tags: ["AI", "технологии", "бизнес"]
+    tags: ["AI", "технологии", "бизнес"],
   },
   {
     id: 63,
@@ -854,7 +875,7 @@ const EVENTS_DATA = [
     description: "X Всероссийский форум для профессионалов B2B-маркетинга.",
     link: "https://interforums.ru/b2b26/home",
     type: "forum",
-    tags: ["маркетинг", "B2B"]
+    tags: ["маркетинг", "B2B"],
   },
   {
     id: 64,
@@ -866,7 +887,7 @@ const EVENTS_DATA = [
     description: "Онлайн-конференция о трендах для маркетологов и бизнеса.",
     link: "https://completo-trends2026.ru",
     type: "conference",
-    tags: ["маркетинг", "тренды"]
+    tags: ["маркетинг", "тренды"],
   },
   {
     id: 65,
@@ -875,12 +896,13 @@ const EVENTS_DATA = [
     month: "nov-2026",
     city: "international",
     importance: "high",
-    description: "🚀 Главный глобальный tech-форум! 70 000+ участников, 1200+ спикеров, 160+ стран.",
+    description:
+      "🚀 Главный глобальный tech-форум! 70 000+ участников, 1200+ спикеров, 160+ стран.",
     recommended: "Директор + 2-3 лидера",
     is_featured: true,
     type: "forum",
-    tags: ["технологии", "инновации", "глобальный"]
-  }
+    tags: ["технологии", "инновации", "глобальный"],
+  },
 
   // ═══════════════════════════════════════════════
   //  ПАРТНЁРСКИЕ МЕРОПРИЯТИЯ И ЭФИРЫ MON (из Excel)
@@ -897,7 +919,7 @@ const EVENTS_DATA = [
     link: "https://eventawardsrussia.com",
     naom_participation: "Скидка 20%",
     type: "award",
-    tags: ["ивент", "премия"]
+    tags: ["ивент", "премия"],
   },
   {
     id: 67,
@@ -909,7 +931,7 @@ const EVENTS_DATA = [
     description: "Партнёрское мероприятие.",
     link: "https://moscow-traditions.ru/",
     type: "festival",
-    tags: ["культура", "Москва"]
+    tags: ["культура", "Москва"],
   },
   {
     id: 68,
@@ -922,7 +944,7 @@ const EVENTS_DATA = [
     link: "https://naom-event.timepad.ru/event/3747752/",
     naom_participation: "БЕСПЛАТНО",
     type: "webinar",
-    tags: ["тренды", "MON"]
+    tags: ["тренды", "MON"],
   },
   {
     id: 69,
@@ -931,10 +953,11 @@ const EVENTS_DATA = [
     month: "jan-2026",
     city: "spb",
     importance: "medium",
-    description: "Международная премия коммуникационных практик в области туризма.",
+    description:
+      "Международная премия коммуникационных практик в области туризма.",
     link: "https://rupor-award.ru",
     type: "award",
-    tags: ["туризм", "коммуникации"]
+    tags: ["туризм", "коммуникации"],
   },
   {
     id: 70,
@@ -947,7 +970,7 @@ const EVENTS_DATA = [
     link: "https://rental-conference.tb.ru",
     naom_participation: "БЕСПЛАТНО",
     type: "conference",
-    tags: ["прокат", "оборудование"]
+    tags: ["прокат", "оборудование"],
   },
   {
     id: 71,
@@ -959,7 +982,7 @@ const EVENTS_DATA = [
     description: "Национальная премия в области коммуникаций.",
     link: "https://luchnik.ru",
     type: "award",
-    tags: ["коммуникации", "премия"]
+    tags: ["коммуникации", "премия"],
   },
   {
     id: 72,
@@ -971,7 +994,7 @@ const EVENTS_DATA = [
     description: "Международное онлайн-событие для HR-лидеров.",
     link: "https://deadlineconf.ru/",
     type: "conference",
-    tags: ["HR"]
+    tags: ["HR"],
   },
   {
     id: 73,
@@ -983,7 +1006,7 @@ const EVENTS_DATA = [
     description: "Ключевые технологии для финансовой платформы будущего.",
     link: "https://fincore.ru/",
     type: "conference",
-    tags: ["финтех", "технологии"]
+    tags: ["финтех", "технологии"],
   },
   {
     id: 74,
@@ -992,10 +1015,11 @@ const EVENTS_DATA = [
     month: "mar-2026",
     city: "moscow",
     importance: "low",
-    description: "Стратегия и тактика корпоративного обучения и развития персонала.",
+    description:
+      "Стратегия и тактика корпоративного обучения и развития персонала.",
     link: "https://b-forums.ru/td-day",
     type: "forum",
-    tags: ["HR", "обучение"]
+    tags: ["HR", "обучение"],
   },
   {
     id: 75,
@@ -1008,7 +1032,7 @@ const EVENTS_DATA = [
     link: "https://businesshotelrating.com/ceremony",
     naom_participation: "Условия уточняются",
     type: "award",
-    tags: ["отели", "MICE"]
+    tags: ["отели", "MICE"],
   },
   {
     id: 76,
@@ -1020,7 +1044,7 @@ const EVENTS_DATA = [
     description: "Партнёрское мероприятие.",
     link: "https://wowbiz.global/",
     type: "award",
-    tags: ["бизнес", "премия"]
+    tags: ["бизнес", "премия"],
   },
   {
     id: 77,
@@ -1033,7 +1057,7 @@ const EVENTS_DATA = [
     link: "https://mice-excellence.ru/",
     naom_participation: "Условия уточняются",
     type: "conference",
-    tags: ["MICE"]
+    tags: ["MICE"],
   },
   {
     id: 78,
@@ -1045,7 +1069,7 @@ const EVENTS_DATA = [
     description: "Всероссийская конференция режиссёров и event-экспертов.",
     link: "https://rpg-conference.ru/",
     type: "conference",
-    tags: ["ивент", "режиссура"]
+    tags: ["ивент", "режиссура"],
   },
   {
     id: 79,
@@ -1057,7 +1081,7 @@ const EVENTS_DATA = [
     description: "Форум финансовых инноваций.",
     link: "https://finnext.ru/",
     type: "forum",
-    tags: ["финансы", "инновации"]
+    tags: ["финансы", "инновации"],
   },
   {
     id: 80,
@@ -1071,7 +1095,7 @@ const EVENTS_DATA = [
     naom_participation: "Условия уточняются",
     is_featured: false,
     type: "festival",
-    tags: ["ивент", "MICE"]
+    tags: ["ивент", "MICE"],
   },
   {
     id: 81,
@@ -1083,7 +1107,7 @@ const EVENTS_DATA = [
     description: "Профессиональная JavaScript-конференция.",
     link: "https://holyjs.ru/",
     type: "conference",
-    tags: ["IT", "разработка"]
+    tags: ["IT", "разработка"],
   },
   {
     id: 82,
@@ -1096,7 +1120,7 @@ const EVENTS_DATA = [
     link: "https://mice-awards.com",
     naom_participation: "Условия уточняются",
     type: "award",
-    tags: ["MICE", "премия"]
+    tags: ["MICE", "премия"],
   },
   {
     id: 83,
@@ -1108,7 +1132,7 @@ const EVENTS_DATA = [
     description: "Конференция об управлении командами, процессами и собой.",
     link: "https://peoplesense.ru/",
     type: "conference",
-    tags: ["HR", "управление"]
+    tags: ["HR", "управление"],
   },
   {
     id: 84,
@@ -1120,7 +1144,7 @@ const EVENTS_DATA = [
     description: "VI Ежегодный Всероссийский форум по проектному управлению.",
     link: "https://interforums.ru/pm26/home",
     type: "forum",
-    tags: ["управление проектами"]
+    tags: ["управление проектами"],
   },
   {
     id: 85,
@@ -1132,7 +1156,7 @@ const EVENTS_DATA = [
     description: "Well-being, корпоративная культура и коммуникации.",
     link: "https://www.mk-conference.ru/hrlife",
     type: "forum",
-    tags: ["HR", "well-being"]
+    tags: ["HR", "well-being"],
   },
   {
     id: 86,
@@ -1145,7 +1169,7 @@ const EVENTS_DATA = [
     link: "https://perspectum.ru",
     naom_participation: "Скидка 10% (резидентам MON)",
     type: "award",
-    tags: ["маркетинг", "премия"]
+    tags: ["маркетинг", "премия"],
   },
   {
     id: 87,
@@ -1157,7 +1181,7 @@ const EVENTS_DATA = [
     description: "Главный форум MICE-индустрии.",
     link: "https://mice-excellence.ru/",
     type: "forum",
-    tags: ["MICE"]
+    tags: ["MICE"],
   },
   {
     id: 88,
@@ -1169,7 +1193,7 @@ const EVENTS_DATA = [
     description: "Конференция про AI и технологии в бизнесе.",
     link: "https://techweek.moscow/",
     type: "conference",
-    tags: ["AI", "технологии"]
+    tags: ["AI", "технологии"],
   },
   {
     id: 89,
@@ -1181,7 +1205,7 @@ const EVENTS_DATA = [
     description: "X Всероссийский форум для профессионалов B2B-маркетинга.",
     link: "https://interforums.ru/b2b26/home",
     type: "forum",
-    tags: ["маркетинг", "B2B"]
+    tags: ["маркетинг", "B2B"],
   },
   {
     id: 90,
@@ -1193,8 +1217,6 @@ const EVENTS_DATA = [
     description: "Онлайн-конференция о маркетинговых трендах.",
     link: "https://completo-trends2026.ru",
     type: "conference",
-    tags: ["маркетинг", "тренды"]
+    tags: ["маркетинг", "тренды"],
   },
-
-
 ];
