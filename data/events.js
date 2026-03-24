@@ -24,6 +24,7 @@
 //   tags              — массив тегов ["ивент", "MICE", "маркетинг"]
 //   type              — "conference" / "forum" / "award" / "festival" / "webinar" / "partner"
 //
+//
 // КОДЫ МЕСЯЦЕВ:
 //   "jan-2026", "feb-2026", "mar-2026", "apr-2026", "may-2026",
 //   "jun-2026", "jul-2026", "aug-2026", "sep-2026", "oct-2026",
