@@ -28,6 +28,7 @@
 //   "jan-2026", "feb-2026", "mar-2026", "apr-2026", "may-2026",
 //   "jun-2026", "jul-2026", "aug-2026", "sep-2026", "oct-2026",
 //   "nov-2026", "dec-2026"
+//
 // =============================================================
 
 window.EVENTS_DATA = [
@@ -1213,4 +1214,10 @@ window.EVENTS_DATA = [
     date: "18-20 ноября",
     month: "nov-2026",
     city: "online",
-    importan
+    importance: "low",
+    description: "Онлайн-конференция о маркетинговых трендах.",
+    link: "https://completo-trends2026.ru",
+    type: "conference",
+    tags: ["маркетинг", "тренды"],
+  },
+];
