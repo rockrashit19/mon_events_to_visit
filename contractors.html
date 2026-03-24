@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Подрядчики | MON</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body id="contractors-page">
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a class="navbar-logo" href="index.html">MON</a>
+      <div class="navbar-nav">
+        <a class="nav-link" href="index.html">Мероприятия</a>
+        <a class="nav-link active" href="contractors.html">Подрядчики</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <header class="page-header">
+      <h1 class="page-title">Справочник <span>подрядчиков</span></h1>
+      <p class="page-subtitle">Ведущие, кавер-группы, шоу, площадки и интерактив — всё в одном месте</p>
+    </header>
+
+    <div class="filters-panel">
+      <div class="filters-row">
+        <div class="search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="search-input" class="search-input" placeholder="Поиск по имени, описанию, тегам..." />
+        </div>
+        <div class="select-group">
+          <label class="select-label">Категория</label>
+          <select id="filter-category" class="filter-select"></select>
+        </div>
+      </div>
+
+      <div class="filters-actions">
+        <div class="results-info" id="results-info">Загрузка...</div>
+        <button class="btn-reset" id="btn-reset">✕ Сбросить</button>
+      </div>
+    </div>
+
+    <div id="contractors-output"></div>
+
+    <div class="no-results" id="no-results">
+      <div class="no-results-icon">🔎</div>
+      <h3>Ничего не нашлось</h3>
+      <p>Попробуйте изменить параметры поиска</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>MON — внутренняя платформа команды · 2026</p>
+  </footer>
+
+  <script src="data/contractors.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

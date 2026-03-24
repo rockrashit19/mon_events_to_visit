@@ -1,0 +1,1200 @@
+// =============================================================
+// ФАЙЛ ДАННЫХ МЕРОПРИЯТИЙ
+// =============================================================
+// КАК ДОБАВИТЬ НОВОЕ МЕРОПРИЯТИЕ:
+// 1. Скопируй любой блок { ... } ниже
+// 2. Вставь в нужный месяц (или в конец массива)
+// 3. Заполни поля (обязательные: id, title, date, month, city, importance)
+// 4. Сохрани файл — изменения сразу появятся на сайте
+//
+// ОБЯЗАТЕЛЬНЫЕ ПОЛЯ:
+//   id         — уникальный номер (просто следующий по порядку)
+//   title      — название мероприятия
+//   date       — дата строкой: "14-15 апреля" или "23 мая"
+//   month      — код месяца (см. список ниже)
+//   city       — "moscow" / "spb" / "russia-other" / "international" / "online"
+//   importance — "high" / "medium" / "low"
+//
+// НЕОБЯЗАТЕЛЬНЫЕ ПОЛЯ:
+//   description       — короткое описание
+//   recommended       — кому рекомендовано, строка
+//   link              — ссылка на сайт
+//   naom_participation — условия участия НАОМ (скидка, бесплатно и т.д.)
+//   is_featured       — true, если показывать в блоке "Топ событий"
+//   tags              — массив тегов ["ивент", "MICE", "маркетинг"]
+//   type              — "conference" / "forum" / "award" / "festival" / "webinar" / "partner"
+//
+// КОДЫ МЕСЯЦЕВ:
+//   "jan-2026", "feb-2026", "mar-2026", "apr-2026", "may-2026",
+//   "jun-2026", "jul-2026", "aug-2026", "sep-2026", "oct-2026",
+//   "nov-2026", "dec-2026"
+// =============================================================
+
+const EVENTS_DATA = [
+
+  // ═══════════════════════════════════════════════
+  //  ЯНВАРЬ 2026
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 1,
+    title: "Премия Событие Года",
+    date: "Приём заявок",
+    month: "jan-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Национальная премия событийной индустрии.",
+    link: "https://eventawardsrussia.com",
+    naom_participation: "Скидка на участие 20%",
+    type: "award",
+    tags: ["ивент", "премия"]
+  },
+  {
+    id: 2,
+    title: "Фестиваль «Московские традиции»",
+    date: "13 декабря – 28 февраля",
+    month: "jan-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Партнёрское мероприятие.",
+    link: "https://moscow-traditions.ru/",
+    type: "festival",
+    tags: ["культура"]
+  },
+  {
+    id: 3,
+    title: "ИВЕНТ проТЕХ'26",
+    date: "10 января",
+    month: "jan-2026",
+    city: "russia-other",
+    importance: "medium",
+    description: "Партнёрское мероприятие в Самаре.",
+    link: "https://forms.yandex.ru/u/69200e9d5056900d5fbbfe00/",
+    naom_participation: "БЕСПЛАТНО",
+    type: "conference",
+    tags: ["ивент", "технологии"]
+  },
+  {
+    id: 4,
+    title: "Прямой эфир: Тренды Жоля и ЦМТ",
+    date: "15 января",
+    month: "jan-2026",
+    city: "online",
+    importance: "medium",
+    description: "Прямой эфир НАОМ.",
+    link: "https://naom-event.timepad.ru/event/3747752/",
+    naom_participation: "БЕСПЛАТНО",
+    type: "webinar",
+    tags: ["тренды", "НАОМ"]
+  },
+  {
+    id: 5,
+    title: "Международная премия «РУПОР»",
+    date: "20-21 января",
+    month: "jan-2026",
+    city: "spb",
+    importance: "medium",
+    description: "Международная премия коммуникационных практик в области туризма.",
+    link: "https://rupor-award.ru",
+    type: "award",
+    tags: ["туризм", "коммуникации"]
+  },
+  {
+    id: 6,
+    title: "XV Евразийский Ивент Форум (EFEA)",
+    date: "21-23 января",
+    month: "jan-2026",
+    city: "spb",
+    importance: "high",
+    description: "Крупнейший ивент-форум СНГ. Партнёрское мероприятие.",
+    link: "https://euras-forum.com/",
+    naom_participation: "Панель НАОМ",
+    is_featured: true,
+    type: "forum",
+    tags: ["ивент", "MICE", "НАОМ"]
+  },
+  {
+    id: 7,
+    title: "ИВЕНТ проТЕХ'26 (2-й день)",
+    date: "29 января",
+    month: "jan-2026",
+    city: "russia-other",
+    importance: "low",
+    description: "Партнёрское мероприятие в Самаре.",
+    link: "https://forms.yandex.ru/u/69200e9d5056900d5fbbfe00/",
+    naom_participation: "БЕСПЛАТНО",
+    type: "conference",
+    tags: ["ивент"]
+  },
+  {
+    id: 8,
+    title: "Уникальная Россия",
+    date: "23 января – 8 февраля",
+    month: "jan-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "12 000 кв.м выставка народного искусства и дизайна. Масштабный дизайн-проект.",
+    recommended: "Дизайнеры",
+    type: "festival",
+    tags: ["дизайн", "искусство"]
+  },
+  {
+    id: 9,
+    title: "Хакатон VidMK по генеративному видео",
+    date: "22 января",
+    month: "jan-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "100 нейрокреаторов, 25 команд за 24 часа создают рекламное AI-видео.",
+    recommended: "1-2 креативщика",
+    type: "festival",
+    tags: ["AI", "видео", "хакатон"]
+  },
+
+  // ═══════════════════════════════════════════════
+  //  ФЕВРАЛЬ 2026
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 10,
+    title: "Годовое Собрание НАОМ",
+    date: "8-11 февраля",
+    month: "feb-2026",
+    city: "spb",
+    importance: "high",
+    description: "Главное внутреннее мероприятие НАОМ.",
+    naom_participation: "20 000 руб.",
+    is_featured: true,
+    type: "forum",
+    tags: ["НАОМ"]
+  },
+  {
+    id: 11,
+    title: "Премия Событие Года — дедлайн",
+    date: "до 10 февраля",
+    month: "feb-2026",
+    city: "moscow",
+    importance: "high",
+    description: "Деловая программа и церемония. Дедлайн подачи заявок.",
+    link: "https://eventawardsrussia.com",
+    naom_participation: "Скидка на участие 20%",
+    type: "award",
+    tags: ["ивент", "премия"]
+  },
+  {
+    id: 12,
+    title: "Премия bema!",
+    date: "17-19 февраля",
+    month: "feb-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Премия в сфере ивент-индустрии.",
+    link: "https://bemafestival.ru/#main_awards_title",
+    type: "award",
+    tags: ["ивент", "премия"]
+  },
+  {
+    id: 13,
+    title: "Дискуссия MON: HR",
+    date: "18 февраля, 12:30",
+    month: "feb-2026",
+    city: "online",
+    importance: "medium",
+    description: "Онлайн-дискуссия НАОМ на тему HR.",
+    naom_participation: "БЕСПЛАТНО",
+    type: "webinar",
+    tags: ["HR", "НАОМ"]
+  },
+  {
+    id: 14,
+    title: "XI Форум: Стратегия обучения персонала",
+    date: "18-19 февраля",
+    month: "feb-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Всероссийский форум по обучению и развитию персонала.",
+    link: "https://www.mk-conference.ru/obychenie",
+    type: "forum",
+    tags: ["HR", "обучение"]
+  },
+  {
+    id: 15,
+    title: "CSTB.PRO.MEDIA 2026",
+    date: "17-18 февраля",
+    month: "feb-2026",
+    city: "moscow",
+    importance: "high",
+    description: "28-й форум медиаиндустрии. 5300+ специалистов. ИИ в продакшене, Virtual Production.",
+    recommended: "2-3 человека",
+    is_featured: true,
+    type: "forum",
+    tags: ["медиа", "AI", "производство"]
+  },
+  {
+    id: 16,
+    title: "PR+ Forum 2026",
+    date: "11-13 февраля",
+    month: "feb-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Медиа-коммуникации, работа с блогерами, AI в PR, ROI.",
+    recommended: "1-2 человека",
+    type: "forum",
+    tags: ["PR", "маркетинг", "AI"]
+  },
+  {
+    id: 17,
+    title: "Рекламный Хаб Северной столицы",
+    date: "17-18 февраля",
+    month: "feb-2026",
+    city: "spb",
+    importance: "medium",
+    description: "Региональный форум рекламной индустрии.",
+    recommended: "1 человек",
+    type: "forum",
+    tags: ["реклама", "маркетинг"]
+  },
+  {
+    id: 18,
+    title: "Выставка мебели, интерьера и искусства",
+    date: "19-21 февраля",
+    month: "feb-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Международная выставка мебели, интерьерных решений и искусства.",
+    link: "https://artdom-design.ru/visitors-digital26",
+    type: "festival",
+    tags: ["дизайн", "искусство"]
+  },
+  {
+    id: 19,
+    title: "Форум «Крым.Сезон – 2026»",
+    date: "26-27 февраля",
+    month: "feb-2026",
+    city: "russia-other",
+    importance: "low",
+    description: "Выставка-форум для профессионалов туриндустрии и HoReCa.",
+    link: "https://sezoncrimea.ru",
+    type: "forum",
+    tags: ["туризм", "HoReCa"]
+  },
+
+  // ═══════════════════════════════════════════════
+  //  МАРТ 2026
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 20,
+    title: "SOLD OUT Forum",
+    date: "23-24 марта",
+    month: "mar-2026",
+    city: "spb",
+    importance: "high",
+    description: "Главный форум об организации и продвижении событий в России. 2 дня программы, нетворкинг.",
+    recommended: "Весь team!",
+    link: "https://soldoutconf.ru",
+    naom_participation: "Промокод НАОМ — скидка 10%, при 10+ билетах — 20%",
+    is_featured: true,
+    type: "forum",
+    tags: ["ивент", "продажи", "НАОМ"]
+  },
+  {
+    id: 21,
+    title: "V Original+ Фестиваль контента",
+    date: "18-20 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "high",
+    description: "Экранизации, сериалы, Virtual Production, AI в видеопроизводстве.",
+    recommended: "1-2 креативщика",
+    type: "festival",
+    tags: ["контент", "AI", "видео"]
+  },
+  {
+    id: 22,
+    title: "T&D DAY — корпоративное обучение 2026",
+    date: "5 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Стратегия и тактика корпоративного обучения и развития персонала.",
+    link: "https://b-forums.ru/td-day",
+    type: "forum",
+    tags: ["HR", "обучение"]
+  },
+  {
+    id: 23,
+    title: "Spring Marketing Forum 2026",
+    date: "5 марта",
+    month: "mar-2026",
+    city: "spb",
+    importance: "medium",
+    description: "Тренды маркетинга, внедрение нейросетей в B2B.",
+    recommended: "1 человек",
+    link: "https://neiragroup.com/marketing-forum2026",
+    type: "forum",
+    tags: ["маркетинг", "B2B", "AI"]
+  },
+  {
+    id: 24,
+    title: "Воркшоп BE IN RUSSIA",
+    date: "10 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Профессиональная площадка для диалога между заказчиками и MICE-продуктами.",
+    link: "https://beinrussia.ru/meropriyatiya_be_in_russia",
+    naom_participation: "Выступление Юлии Жоля",
+    type: "forum",
+    tags: ["MICE", "НАОМ"]
+  },
+  {
+    id: 25,
+    title: "BUSINESS FORCE 2026",
+    date: "12 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Выставка-форум по маркетингу, продажам и клиентскому сервису.",
+    link: "https://force-forum.ru/",
+    type: "forum",
+    tags: ["маркетинг", "продажи"]
+  },
+  {
+    id: 26,
+    title: "Merge Moscow 2026 — IT-конференция",
+    date: "12-13 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Крупная IT-конференция.",
+    link: "https://moscow2026.mergeconf.ru/",
+    type: "conference",
+    tags: ["IT", "технологии"]
+  },
+  {
+    id: 27,
+    title: "Конференция MITT MICE",
+    date: "13 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "В рамках международной туристической выставки MITT.",
+    link: "https://mitt.ru/ru/business-programme/sessions_2026/MICE/",
+    naom_participation: "Условия уточняются",
+    type: "conference",
+    tags: ["MICE", "туризм"]
+  },
+  {
+    id: 28,
+    title: "VI Московская неделя моды",
+    date: "12-17 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Fashion-индустрия, дизайн, тренды.",
+    type: "festival",
+    tags: ["мода", "дизайн"]
+  },
+  {
+    id: 29,
+    title: "Global Tech Forum",
+    date: "27 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "2000 участников, 120 спикеров. Цифровые тренды.",
+    recommended: "1 человек",
+    link: "https://globaltechforum.ru/",
+    type: "forum",
+    tags: ["технологии", "цифровая трансформация"]
+  },
+  {
+    id: 30,
+    title: "MICE EXCELLENCE CAMPUS",
+    date: "30 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Партнёрское мероприятие.",
+    link: "https://mice-excellence.ru/",
+    naom_participation: "Условия уточняются",
+    type: "conference",
+    tags: ["MICE"]
+  },
+  {
+    id: 31,
+    title: "Планета Искусств",
+    date: "15-18 марта",
+    month: "mar-2026",
+    city: "spb",
+    importance: "low",
+    description: "360° фестиваль искусств и творчества.",
+    type: "festival",
+    tags: ["искусство", "творчество"]
+  },
+
+  // ═══════════════════════════════════════════════
+  //  АПРЕЛЬ 2026
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 32,
+    title: "На уровне Идеи",
+    date: "21-22 апреля",
+    month: "apr-2026",
+    city: "russia-other",
+    importance: "high",
+    description: "Возрождение легендарного фестиваля! 1000+ заявок, 37 экспертов-жюри. Топ-агентства России.",
+    recommended: "1-2 креативщика",
+    is_featured: true,
+    type: "festival",
+    tags: ["креатив", "ивент"]
+  },
+  {
+    id: 33,
+    title: "«Трансформация реальности»",
+    date: "6 апреля",
+    month: "apr-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Всероссийская конференция режиссёров, постановщиков и event-экспертов.",
+    link: "https://rpg-conference.ru/",
+    type: "conference",
+    tags: ["ивент", "режиссура"]
+  },
+  {
+    id: 34,
+    title: "Blockchain Forum 2026",
+    date: "14-15 апреля",
+    month: "apr-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "20 000+ участников. Web3, Metaverse, NFT, blockchain в медиа.",
+    recommended: "1 человек",
+    type: "forum",
+    tags: ["blockchain", "Web3", "технологии"]
+  },
+  {
+    id: 35,
+    title: "AI Future Forum",
+    date: "14-15 апреля",
+    month: "apr-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Международный форум по искусственному интеллекту.",
+    link: "https://www.digital-calendar.ru/ai-future-2026/",
+    type: "forum",
+    tags: ["AI", "технологии"]
+  },
+  {
+    id: 36,
+    title: "Российская неделя высоких технологий",
+    date: "7-10 апреля",
+    month: "apr-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Связь-2026, Навитех, ICEE. Технологические инновации.",
+    type: "festival",
+    tags: ["технологии", "инновации"]
+  },
+  {
+    id: 37,
+    title: "Фестиваль «СЦЕНА»",
+    date: "22 апреля",
+    month: "apr-2026",
+    city: "moscow",
+    importance: "high",
+    description: "Ивент и MICE фестиваль.",
+    link: "https://bfup.ru/",
+    naom_participation: "Условия уточняются",
+    type: "festival",
+    tags: ["ивент", "MICE"]
+  },
+  {
+    id: 38,
+    title: "AI ProductConf",
+    date: "23-24 апреля",
+    month: "apr-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Практическая конференция для продакт-менеджеров в эпоху AI.",
+    link: "https://productconf.ru/",
+    type: "conference",
+    tags: ["AI", "product"]
+  },
+  {
+    id: 39,
+    title: "TED 2026",
+    date: "13-17 апреля",
+    month: "apr-2026",
+    city: "international",
+    importance: "high",
+    description: "⚠️ Последний год в Ванкувере! 1000 участников, 80+ TED Talks. Стоимость ~$12 000 USD.",
+    recommended: "Директор + 1-2 лидера",
+    is_featured: true,
+    type: "conference",
+    tags: ["вдохновение", "тренды"]
+  },
+
+  // ═══════════════════════════════════════════════
+  //  МАЙ 2026
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 40,
+    title: "JavaScript-конференция HolyJS",
+    date: "14-15 мая",
+    month: "may-2026",
+    city: "moscow",
+    importance: "low",
+    description: "От фронтенда до бэкенда.",
+    link: "https://holyjs.ru/",
+    type: "conference",
+    tags: ["IT", "разработка"]
+  },
+  {
+    id: 41,
+    title: "MICE Excellence Awards",
+    date: "21 мая",
+    month: "may-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Партнёрское мероприятие.",
+    link: "https://mice-awards.com",
+    naom_participation: "Условия уточняются",
+    type: "award",
+    tags: ["MICE", "премия"]
+  },
+  {
+    id: 42,
+    title: "Business & Design Dialogue",
+    date: "28-29 мая",
+    month: "may-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Дизайн офисных пространств, AI в дизайне.",
+    recommended: "1 человек",
+    type: "conference",
+    tags: ["дизайн", "AI"]
+  },
+  {
+    id: 43,
+    title: "Cannes Lions 2026",
+    date: "12-23 мая",
+    month: "may-2026",
+    city: "international",
+    importance: "high",
+    description: "🏆 Олимпиада креативной индустрии! 50 000 участников. Лучшие креативные работы мира.",
+    recommended: "2-3 креативщика + менеджмент",
+    is_featured: true,
+    type: "festival",
+    tags: ["реклама", "креатив", "маркетинг"]
+  },
+
+  // ═══════════════════════════════════════════════
+  //  ИЮНЬ 2026
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 44,
+    title: "PeopleSense",
+    date: "4-5 июня",
+    month: "jun-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Конференция об управлении командами, процессами и собой.",
+    link: "https://peoplesense.ru/",
+    type: "conference",
+    tags: ["HR", "управление"]
+  },
+  {
+    id: 45,
+    title: "VidMK26",
+    date: "5-6 июня",
+    month: "jun-2026",
+    city: "moscow",
+    importance: "high",
+    description: "X ежегодный форум создателей кино и видео. 100+ спикеров, 2000+ участников, 7 залов.",
+    recommended: "1-2 креативщика",
+    is_featured: true,
+    type: "forum",
+    tags: ["видео", "кино", "AI"]
+  },
+  {
+    id: 46,
+    title: "ПМЭФ 2026",
+    date: "3-6 июня",
+    month: "jun-2026",
+    city: "spb",
+    importance: "medium",
+    description: "Петербургский международный экономический форум. 24 000 участников.",
+    recommended: "1 человек",
+    type: "forum",
+    tags: ["экономика", "бизнес"]
+  },
+  {
+    id: 47,
+    title: "Project Management Forum 2026",
+    date: "24-26 июня",
+    month: "jun-2026",
+    city: "moscow",
+    importance: "low",
+    description: "VI Ежегодный Всероссийский форум по проектному управлению.",
+    link: "https://interforums.ru/pm26/home",
+    type: "forum",
+    tags: ["управление проектами", "бизнес"]
+  },
+
+  // ═══════════════════════════════════════════════
+  //  ИЮЛЬ 2026
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 48,
+    title: "Gamma Festival 2026 — X edition",
+    date: "3-6 июля",
+    month: "jul-2026",
+    city: "spb",
+    importance: "medium",
+    description: "Фестиваль электронной музыки и современной культуры.",
+    recommended: "1-2 человека",
+    type: "festival",
+    tags: ["музыка", "культура"]
+  },
+  {
+    id: 49,
+    title: "Epic Con Russia",
+    date: "4-5 июля",
+    month: "jul-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Фестиваль фантастики, фан-культура. Вдохновение для креативов.",
+    recommended: "1-2 человека",
+    type: "festival",
+    tags: ["фестиваль", "культура"]
+  },
+  {
+    id: 50,
+    title: "Дивный остров",
+    date: "23-26 июля",
+    month: "jul-2026",
+    city: "spb",
+    importance: "low",
+    description: "Творчество, танец, театр, выставки.",
+    type: "festival",
+    tags: ["искусство", "творчество"]
+  },
+
+  // ═══════════════════════════════════════════════
+  //  АВГУСТ 2026
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 51,
+    title: "V Всероссийский Форум HR Life",
+    date: "26-27 августа",
+    month: "aug-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Well-being, корпоративная культура и коммуникации.",
+    link: "https://www.mk-conference.ru/hrlife",
+    type: "forum",
+    tags: ["HR", "корпоративная культура"]
+  },
+  {
+    id: 52,
+    title: "Московская книжная ярмарка",
+    date: "3-7 сентября",
+    month: "aug-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "300+ издателей, встречи с авторами. Контент для экранизаций.",
+    type: "festival",
+    tags: ["книги", "контент"]
+  },
+  {
+    id: 53,
+    title: "Burning Man 2026",
+    date: "30 августа – 7 сентября",
+    month: "aug-2026",
+    city: "international",
+    importance: "medium",
+    description: "70 000 людей в пустыне. 2000 арт-инсталляций. Экстремальное вдохновение.",
+    type: "festival",
+    tags: ["фестиваль", "арт", "вдохновение"]
+  },
+
+  // ═══════════════════════════════════════════════
+  //  СЕНТЯБРЬ 2026
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 54,
+    title: "МТК-2026",
+    date: "8-10 сентября",
+    month: "sep-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "800+ спикеров, 20+ треков. Медиа и технологии.",
+    type: "forum",
+    tags: ["медиа", "технологии"]
+  },
+  {
+    id: 55,
+    title: "Российские дни дизайна и архитектуры",
+    date: "23-25 сентября",
+    month: "sep-2026",
+    city: "spb",
+    importance: "medium",
+    description: "Дизайн, архитектура, пространства.",
+    recommended: "1 дизайнер",
+    type: "festival",
+    tags: ["дизайн", "архитектура"]
+  },
+  {
+    id: 56,
+    title: "Kazan Digital Week",
+    date: "16-18 сентября",
+    month: "sep-2026",
+    city: "russia-other",
+    importance: "low",
+    description: "Цифровые технологии, инновации.",
+    type: "conference",
+    tags: ["цифровые технологии", "инновации"]
+  },
+  {
+    id: 57,
+    title: "PERSPECTUM AWARDS",
+    date: "Приём заявок: 16 февраля – 30 июня",
+    month: "sep-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Фестиваль маркетинговых услуг. Партнёрское мероприятие.",
+    link: "https://perspectum.ru",
+    naom_participation: "Скидка 10% (указать, что резидент MON)",
+    type: "award",
+    tags: ["маркетинг", "премия"]
+  },
+  {
+    id: 58,
+    title: "DMEXCO 2026",
+    date: "23-24 сентября",
+    month: "sep-2026",
+    city: "international",
+    importance: "medium",
+    description: "40 000 маркетинг-лидеров. Главная конференция по цифровому маркетингу в Европе.",
+    type: "conference",
+    tags: ["маркетинг", "цифровые технологии"]
+  },
+
+  // ═══════════════════════════════════════════════
+  //  ОКТЯБРЬ 2026
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 59,
+    title: "Adobe MAX 2026",
+    date: "26-28 октября",
+    month: "oct-2026",
+    city: "international",
+    importance: "medium",
+    description: "200+ мастер-классов. Generative AI, 3D, Video Production.",
+    recommended: "2-3 дизайнера",
+    type: "conference",
+    tags: ["дизайн", "AI", "видео"]
+  },
+  {
+    id: 60,
+    title: "MIPCOM 2026",
+    date: "12-15 октября",
+    month: "oct-2026",
+    city: "international",
+    importance: "medium",
+    description: "Международный маркетплейс контента. Режиссёры, продюсеры, платформы.",
+    type: "conference",
+    tags: ["контент", "кино", "медиа"]
+  },
+
+  // ═══════════════════════════════════════════════
+  //  НОЯБРЬ 2026
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 61,
+    title: "MICE EXCELLENCE FORUM",
+    date: "12-14 ноября",
+    month: "nov-2026",
+    city: "moscow",
+    importance: "high",
+    description: "Главный форум MICE-индустрии.",
+    link: "https://mice-excellence.ru/",
+    type: "forum",
+    tags: ["MICE", "ивент"]
+  },
+  {
+    id: 62,
+    title: "Tech Week 2026",
+    date: "23-25 ноября",
+    month: "nov-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Конференция про искусственный интеллект и технологии в бизнесе.",
+    link: "https://techweek.moscow/",
+    type: "conference",
+    tags: ["AI", "технологии", "бизнес"]
+  },
+  {
+    id: 63,
+    title: "B2B Marketing Forum 2026",
+    date: "26-27 ноября",
+    month: "nov-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "X Всероссийский форум для профессионалов B2B-маркетинга.",
+    link: "https://interforums.ru/b2b26/home",
+    type: "forum",
+    tags: ["маркетинг", "B2B"]
+  },
+  {
+    id: 64,
+    title: "Completo Trends 2026",
+    date: "18-20 ноября",
+    month: "nov-2026",
+    city: "online",
+    importance: "low",
+    description: "Онлайн-конференция о трендах для маркетологов и бизнеса.",
+    link: "https://completo-trends2026.ru",
+    type: "conference",
+    tags: ["маркетинг", "тренды"]
+  },
+  {
+    id: 65,
+    title: "Web Summit Lisbon 2026",
+    date: "9-12 ноября",
+    month: "nov-2026",
+    city: "international",
+    importance: "high",
+    description: "🚀 Главный глобальный tech-форум! 70 000+ участников, 1200+ спикеров, 160+ стран.",
+    recommended: "Директор + 2-3 лидера",
+    is_featured: true,
+    type: "forum",
+    tags: ["технологии", "инновации", "глобальный"]
+  }
+
+  // ═══════════════════════════════════════════════
+  //  ПАРТНЁРСКИЕ МЕРОПРИЯТИЯ И ЭФИРЫ MON (из Excel)
+  // ═══════════════════════════════════════════════
+
+  {
+    id: 66,
+    title: "Премия Событие Года — Приём заявок",
+    date: "Приём заявок",
+    month: "dec-2025",
+    city: "moscow",
+    importance: "medium",
+    description: "Национальная премия событийной индустрии.",
+    link: "https://eventawardsrussia.com",
+    naom_participation: "Скидка 20%",
+    type: "award",
+    tags: ["ивент", "премия"]
+  },
+  {
+    id: 67,
+    title: "Фестиваль «Московские традиции»",
+    date: "13 декабря – 28 февраля",
+    month: "dec-2025",
+    city: "moscow",
+    importance: "low",
+    description: "Партнёрское мероприятие.",
+    link: "https://moscow-traditions.ru/",
+    type: "festival",
+    tags: ["культура", "Москва"]
+  },
+  {
+    id: 68,
+    title: "Прямой эфир: Тренды Жоля и ЦМТ",
+    date: "15 января",
+    month: "jan-2026",
+    city: "online",
+    importance: "medium",
+    description: "Прямой эфир MON о трендах.",
+    link: "https://naom-event.timepad.ru/event/3747752/",
+    naom_participation: "БЕСПЛАТНО",
+    type: "webinar",
+    tags: ["тренды", "MON"]
+  },
+  {
+    id: 69,
+    title: "Международная премия «РУПОР»",
+    date: "20-21 января",
+    month: "jan-2026",
+    city: "spb",
+    importance: "medium",
+    description: "Международная премия коммуникационных практик в области туризма.",
+    link: "https://rupor-award.ru",
+    type: "award",
+    tags: ["туризм", "коммуникации"]
+  },
+  {
+    id: 70,
+    title: "XIX Всероссийская Конференция прокатчиков",
+    date: "29 января – 1 февраля",
+    month: "jan-2026",
+    city: "samara",
+    importance: "medium",
+    description: "Партнёрское мероприятие в Самаре.",
+    link: "https://rental-conference.tb.ru",
+    naom_participation: "БЕСПЛАТНО",
+    type: "conference",
+    tags: ["прокат", "оборудование"]
+  },
+  {
+    id: 71,
+    title: "Национальная премия «Серебряный Лучник»",
+    date: "Приём заявок",
+    month: "jan-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Национальная премия в области коммуникаций.",
+    link: "https://luchnik.ru",
+    type: "award",
+    tags: ["коммуникации", "премия"]
+  },
+  {
+    id: 72,
+    title: "ДЕДЛАЙН — событие для HR-лидеров",
+    date: "6 февраля",
+    month: "feb-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Международное онлайн-событие для HR-лидеров.",
+    link: "https://deadlineconf.ru/",
+    type: "conference",
+    tags: ["HR"]
+  },
+  {
+    id: 73,
+    title: "FINCORE26",
+    date: "26 февраля",
+    month: "feb-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Ключевые технологии для финансовой платформы будущего.",
+    link: "https://fincore.ru/",
+    type: "conference",
+    tags: ["финтех", "технологии"]
+  },
+  {
+    id: 74,
+    title: "T&D DAY 2026",
+    date: "5 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Стратегия и тактика корпоративного обучения и развития персонала.",
+    link: "https://b-forums.ru/td-day",
+    type: "forum",
+    tags: ["HR", "обучение"]
+  },
+  {
+    id: 75,
+    title: "Первый рейтинг бизнес-отелей TOP 100",
+    date: "11 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Всероссийский рейтинг бизнес-отелей.",
+    link: "https://businesshotelrating.com/ceremony",
+    naom_participation: "Условия уточняются",
+    type: "award",
+    tags: ["отели", "MICE"]
+  },
+  {
+    id: 76,
+    title: "II Национальная бизнес-премия WOWBIZ",
+    date: "23 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Партнёрское мероприятие.",
+    link: "https://wowbiz.global/",
+    type: "award",
+    tags: ["бизнес", "премия"]
+  },
+  {
+    id: 77,
+    title: "MICE EXCELLENCE CAMPUS",
+    date: "30 марта",
+    month: "mar-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Партнёрское мероприятие.",
+    link: "https://mice-excellence.ru/",
+    naom_participation: "Условия уточняются",
+    type: "conference",
+    tags: ["MICE"]
+  },
+  {
+    id: 78,
+    title: "«Трансформация реальности» — конференция режиссёров",
+    date: "6 апреля",
+    month: "apr-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Всероссийская конференция режиссёров и event-экспертов.",
+    link: "https://rpg-conference.ru/",
+    type: "conference",
+    tags: ["ивент", "режиссура"]
+  },
+  {
+    id: 79,
+    title: "14-й форум финансовых инноваций FINNEXT",
+    date: "7 апреля",
+    month: "apr-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Форум финансовых инноваций.",
+    link: "https://finnext.ru/",
+    type: "forum",
+    tags: ["финансы", "инновации"]
+  },
+  {
+    id: 80,
+    title: "Ивент и MICE фестиваль «СЦЕНА»",
+    date: "22 апреля",
+    month: "apr-2026",
+    city: "moscow",
+    importance: "high",
+    description: "Крупный ивент-фестиваль.",
+    link: "https://bfup.ru/",
+    naom_participation: "Условия уточняются",
+    is_featured: false,
+    type: "festival",
+    tags: ["ивент", "MICE"]
+  },
+  {
+    id: 81,
+    title: "JavaScript-конференция HolyJS",
+    date: "14-15 мая",
+    month: "may-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Профессиональная JavaScript-конференция.",
+    link: "https://holyjs.ru/",
+    type: "conference",
+    tags: ["IT", "разработка"]
+  },
+  {
+    id: 82,
+    title: "MICE Excellence Awards",
+    date: "21 мая",
+    month: "may-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Партнёрское мероприятие MICE-индустрии.",
+    link: "https://mice-awards.com",
+    naom_participation: "Условия уточняются",
+    type: "award",
+    tags: ["MICE", "премия"]
+  },
+  {
+    id: 83,
+    title: "PeopleSense — конференция об управлении",
+    date: "4-5 июня",
+    month: "jun-2026",
+    city: "moscow",
+    importance: "low",
+    description: "Конференция об управлении командами, процессами и собой.",
+    link: "https://peoplesense.ru/",
+    type: "conference",
+    tags: ["HR", "управление"]
+  },
+  {
+    id: 84,
+    title: "Project Management Forum 2026",
+    date: "24-26 июня",
+    month: "jun-2026",
+    city: "moscow",
+    importance: "low",
+    description: "VI Ежегодный Всероссийский форум по проектному управлению.",
+    link: "https://interforums.ru/pm26/home",
+    type: "forum",
+    tags: ["управление проектами"]
+  },
+  {
+    id: 85,
+    title: "V Всероссийский Форум HR Life",
+    date: "26-27 августа",
+    month: "aug-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Well-being, корпоративная культура и коммуникации.",
+    link: "https://www.mk-conference.ru/hrlife",
+    type: "forum",
+    tags: ["HR", "well-being"]
+  },
+  {
+    id: 86,
+    title: "PERSPECTUM AWARDS",
+    date: "Сентябрь (заявки: 16 февраля – 30 июня)",
+    month: "sep-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Фестиваль маркетинговых услуг.",
+    link: "https://perspectum.ru",
+    naom_participation: "Скидка 10% (резидентам MON)",
+    type: "award",
+    tags: ["маркетинг", "премия"]
+  },
+  {
+    id: 87,
+    title: "MICE EXCELLENCE FORUM",
+    date: "12-14 ноября",
+    month: "nov-2026",
+    city: "moscow",
+    importance: "high",
+    description: "Главный форум MICE-индустрии.",
+    link: "https://mice-excellence.ru/",
+    type: "forum",
+    tags: ["MICE"]
+  },
+  {
+    id: 88,
+    title: "Tech Week 2026",
+    date: "23-25 ноября",
+    month: "nov-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "Конференция про AI и технологии в бизнесе.",
+    link: "https://techweek.moscow/",
+    type: "conference",
+    tags: ["AI", "технологии"]
+  },
+  {
+    id: 89,
+    title: "B2B Marketing Forum 2026",
+    date: "26-27 ноября",
+    month: "nov-2026",
+    city: "moscow",
+    importance: "medium",
+    description: "X Всероссийский форум для профессионалов B2B-маркетинга.",
+    link: "https://interforums.ru/b2b26/home",
+    type: "forum",
+    tags: ["маркетинг", "B2B"]
+  },
+  {
+    id: 90,
+    title: "Completo Trends 2026",
+    date: "18-20 ноября",
+    month: "nov-2026",
+    city: "online",
+    importance: "low",
+    description: "Онлайн-конференция о маркетинговых трендах.",
+    link: "https://completo-trends2026.ru",
+    type: "conference",
+    tags: ["маркетинг", "тренды"]
+  },
+
+
+];
